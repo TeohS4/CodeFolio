@@ -1,0 +1,76 @@
+.contact-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 1rem;
+}
+
+.contact-card {
+  width: 100%;
+  max-width: 900px;
+  padding: 2rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
+  background-color: #2e2e2e;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.success-message {
+  margin-top: 1rem;
+  color: green;
+  font-weight: bold;
+}
+
+.contact-card.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.left-column,
+.right-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.business-info p {
+  margin: 0.5rem 0;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.map-container {
+  height: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  /* ensures child iframe is clipped */
+  width: 100%;
+  /* make sure container doesn't overflow */
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  /* removes default inline spacing */
+}
+
+/* Responsive: stack columns on small screens */
+@media (max-width: 900px) {
+  .contact-card.grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  .map-container {
+    height: 200px;
+  }
+}

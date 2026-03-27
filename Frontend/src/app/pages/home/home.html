@@ -1,0 +1,162 @@
+<div class="dark-container">
+  <header class="hero">
+    <div class="name-container">
+      <h1 class="gradient-text">Teoh Wei Jie</h1>
+    </div>
+    <p class="tagline">Fullstack Developer | Software Engineer</p>
+
+    <div class="contact-bar">
+      <div class="contact-item">
+        <mat-icon>email</mat-icon>
+        <span>weijieteoh26@gmail.com</span>
+      </div>
+      <div class="contact-item">
+        <mat-icon>phone</mat-icon>
+        <span>+60124567288</span>
+      </div>
+      <div class="contact-item">
+        <mat-icon>place</mat-icon>
+        <span>Penang, Malaysia</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="bento-grid">
+    <mat-card class="bento-card about interactive">
+      <div class="card-content">
+        <h3>Profile</h3>
+        <p>I’m passionate about technology and software development. I’m always looking for opportunities to grow, move
+          forward in my career, and contribute to meaningful projects.</p>
+        <div class="strengths">
+          <span class="badge">Attention To Detail</span>
+          <span class="badge">Self-Discipline</span>
+          <span class="badge">Independence</span>
+          <span class="badge">Quick Learner</span>
+        </div>
+      </div>
+    </mat-card>
+
+    <mat-card class="bento-card experience interactive">
+      <h3>Professional Experience</h3>
+      <div class="job-item">
+        <div class="job-header">
+          <strong>Devsoft Sdn Bhd</strong>
+          <span>2025</span>
+        </div>
+        <div class="job-role">Software Engineer</div>
+        <ul>
+          <li>Develop content management system using Angular with
+            TypeScript, ensure reusable code and user experience</li>
+          <li>Integrate APIs into the admin portal for extended
+            functionality, including CRUD operations</li>
+          <li>Develop and implement backend APIs using C# with .NET,
+            integrated with Microsoft SQL for secure user authentication
+            and efficient data management</li>
+          <li>Optimized code for scalability, performance, and security
+            across frontend and backend components
+          </li>
+        </ul>
+      </div>
+      <div class="job-item">
+        <div class="job-header">
+          <strong>Xlent Innovator Sdn Bhd</strong>
+          <span>2024</span>
+        </div>
+        <div class="job-role">Software Engineer</div>
+        <ul>
+          <li>Developed a WPF .NET application serving as a control panel to communicate with
+            Automated Guided Vehicles (AGVs) using APIs, following the MVVM architecture
+          </li>
+          <li>Enhance .NET application for automated chip inspection system, such as logging
+            feature.</li>
+        </ul>
+      </div>
+    </mat-card>
+
+    <mat-card class="bento-card skills interactive">
+      <h3>Technical Skills</h3>
+      <div class="skill-group">
+        <label>Frontend</label>
+        <ul class="badge-list">
+          <li class="badge">HTML</li>
+          <li class="badge">Angular (TypeScript)</li>
+          <li class="badge">Flutter</li>
+          <li class="badge">React</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <label>Backend</label>
+        <ul class="badge-list">
+          <li class="badge">.NET 10</li>
+          <li class="badge">ASP.NET</li>
+          <li class="badge">PHP</li>
+          <li class="badge">Node JS</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <label>Database</label>
+        <ul class="badge-list">
+          <li class="badge">MySQL</li>
+          <li class="badge">Microsoft SQL</li>
+          <li class="badge">MongoDB</li>
+          <li class="badge">Firebase</li>
+        </ul>
+      </div>
+    </mat-card>
+
+    <mat-card class="bento-card education interactive">
+      <h3>🎓Education & Honors</h3>
+      <div class="edu-item">
+        <strong>BSc (Hons) Computing</strong>
+        <div class="edu-details">
+          <span class="edu-institution">Coventry University</span>
+          <span class="edu-duration">2021 - 2023</span>
+          <span class="edu-cgpa">3.3 CGPA | Upper Second Class</span>
+        </div>
+      </div>
+      <div class="edu-item">
+        <strong>Diploma in Information Technology</strong>
+        <div class="edu-details">
+          <span class="edu-institution">INTI International College Penang</span>
+          <span class="edu-duration">2019 - 2021</span>
+          <span class="edu-cgpa">CGPA 3.09</span>
+        </div>
+      </div>
+      <div class="awards-list">
+        <span class="badge">🏆 Dean's List (Diploma)</span>
+        <span class="badge">🎹 ABRSM Piano Grade 5</span>
+        <span class="badge">🎨 Drawing Competition</span>
+        <span class="badge">🧪 Science Fair Project</span>
+      </div>
+    </mat-card>
+
+    <!-- <mat-card class="bento-card education interactive">
+      <h3>College Projects</h3>
+      <li> Develops an e-commerce web application that sells
+        sustainable product using PHP and SQL (FYP)
+      </li>
+      <li>Develops a Trip Planner app using Flutter, Firebase as
+        database and 3rd-party API implementation such as
+        retrieving real time weather information
+      </li>
+      <li>Build and Deploy NewsByte app using Node JS with API
+        integration to retrieve latest news data and using
+        MongoDB for CRUD operations</li>
+    </mat-card> -->
+    <mat-card class="bento-card education interactive" *ngFor="let project of projects">
+      <img mat-card-image [src]="project.image" alt="project image" />
+      <h3>{{ project.title }}</h3>
+      <div class="edu-item">
+        <strong>{{ project.subtitle }}</strong>
+        <div class="edu-details">
+          <span class="edu-institution">{{ project.description }}</span>
+        </div>
+      </div>
+      <div class="awards-list">
+        <span class="badge" *ngFor="let tech of project.tech">
+          {{ tech }}
+        </span>
+      </div>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+.movie-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+
+  .movie-search-card {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
+    width: 100%;
+  }
+
+  .search-field {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .movies {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+    width: 100%;
+
+    .movie-card {
+      max-width: 300px;
+    }
+  }
+
+  .error {
+    color: red;
+    margin-top: 1rem;
+  }
+
+  .movie-card-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px;
+    margin-top: auto;
+  }
+
+  .action-button {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    text-transform: uppercase;
+  }
+}

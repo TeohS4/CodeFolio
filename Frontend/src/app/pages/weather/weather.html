@@ -1,0 +1,103 @@
+<div class="weather-container">
+    <mat-card class="weather-search-card">
+        <h2>Enter a City</h2>
+        <mat-form-field class="search-field" appearance="outline">
+            <mat-label>Enter a City</mat-label>
+            <input matInput [(ngModel)]="city" placeholder="Enter city name" appNoEmoji
+                (keyup.enter)="fetchWeather(city)" />
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="fetchWeather(city)">Search</button>
+    </mat-card>
+
+    <div *ngIf="error">
+        <p style="color:red">{{ error }}</p>
+    </div>
+
+    <ng-container *ngIf="weather$ | async as data">
+        <mat-card class="weather-card">
+            <div class="header-section mb-3">
+                <!-- Top Row: City Name -->
+                <h2 class="m-0 city-title">Weather in <strong>{{ displayCity }}</strong></h2>
+                <div class="d-flex align-items-center mt-2">
+                    <mat-icon class="large-icon">
+                        {{ weatherService.getWeatherIcon(data.current_weather.weathercode) }}
+                    </mat-icon>
+                    <h3 class="status-text m-0 ms-2">
+                        <strong>{{ weatherService.getWeatherDescription(data.current_weather.weathercode) }}</strong>
+                    </h3>
+                </div>
+                <!-- weather tip -->
+                <div class="weather-tip">
+                    <mat-icon>tips_and_updates</mat-icon>
+                    <span>
+                        {{ weatherService.getWeatherTip(
+                        data.current_weather.weathercode,
+                        data.current_weather.temperature
+                        ) }}
+                    </span>
+                </div>
+            </div>
+
+            <!-- Grid -->
+            <div class="weather-info-grid">
+                <!-- Temperature -->
+                <div class="info-box">
+                    <mat-icon color="warn">thermostat</mat-icon>
+                    <div class="text-content">
+                        <span class="label"><strong>TEMPERATURE</strong></span>
+                        <span class="value"><strong>{{ data.current_weather.temperature }} °C</strong></span>
+                    </div>
+                </div>
+
+                <!-- Wind Speed -->
+                <div class="info-box">
+                    <mat-icon color="primary">air</mat-icon>
+                    <div class="text-content">
+                        <span class="label"><strong>WIND SPEED</strong></span>
+                        <span class="value"><strong>{{ data.current_weather.windspeed }} km/h</strong></span>
+                    </div>
+                </div>
+
+                <!-- Time -->
+                <div class="info-box">
+                    <mat-icon>schedule</mat-icon> <!-- Clock Icon -->
+                    <div class="text-content">
+                        <span class="label"><strong>LOCAL TIME</strong></span>
+                        <span class="value"><strong>{{ data.current_weather.time | date:'HH:mm' }}</strong></span>
+                    </div>
+                </div>
+
+                <!-- Humidity Box -->
+                <div class="info-box">
+                    <mat-icon style="color: #4fc3f7;">water_drop</mat-icon>
+                    <div class="text-content">
+                        <span class="label"><strong>HUMIDITY</strong></span>
+                        <span class="value"><strong>{{ data.current?.relative_humidity_2m }}%</strong></span>
+                    </div>
+                </div>
+            </div>
+            <!-- maps -->
+            <mat-card class="mt-4" *ngIf="mapUrl">
+                <mat-card-header>
+                    <mat-card-title>
+                        <mat-icon class="me-2">location_on</mat-icon>
+                        Explore {{ displayCity }}
+                    </mat-card-title>
+                </mat-card-header>
+                <br>
+                <mat-card-content class="mt-3">
+                    <div style="width: 100%; overflow: hidden; border-radius: 8px; border: 1px solid #ddd;">
+                        <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0"
+                            marginwidth="0" [src]="mapUrl">
+                        </iframe>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-card>
+    </ng-container>
+
+    <div *ngIf="isLoading" class="loading-overlay">
+        <mat-spinner [diameter]="50"></mat-spinner>
+        <p class="mt-3 fw-bold">Loading weather...</p>
+    </div>
+</div>

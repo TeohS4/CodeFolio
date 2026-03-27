@@ -1,0 +1,72 @@
+.news-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 1rem;
+  background: #242424;
+  border-radius: 12px;
+}
+
+.title-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+}
+
+.news-list {
+  display: grid;
+  /* Adjust 300px to make cards wider or narrower */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.news-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensures all cards in a row are the same height */
+  background: #333; /* Optional: adjust for dark mode */
+  color: white;
+}
+
+.news-image {
+  height: 200px;
+  object-fit: cover; /* Prevents image distortion */
+}
+
+mat-card-content {
+  flex-grow: 1; /* Pushes buttons to the bottom of the card */
+}
+
+.news-card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px !important;
+}
+.news-card-actions {
+  display: flex;
+  gap: 12px; /* Adds space between the buttons */
+  padding: 16px !important;
+}
+
+.action-button {
+  flex: 1; /* Makes both buttons the exact same width */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Optional: Add a small margin to the icon inside the button */
+.action-button mat-icon {
+  margin-right: 8px;
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
+}

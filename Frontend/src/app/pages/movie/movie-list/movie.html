@@ -1,0 +1,41 @@
+<div class="movie-container">
+  <mat-card class="movie-search-card">
+    <h2>Search Movies</h2>
+    <mat-form-field class="search-field" appearance="outline">
+      <mat-label>Search Movie</mat-label>
+      <input matInput [(ngModel)]="query" (keyup.enter)="search()" appNoEmoji />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="search()">Search</button>
+  </mat-card>
+  <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="50"></mat-progress-spinner>
+
+  <p *ngIf="error" class="error">{{ error }}</p>
+  <div class="movies" *ngIf="movies.length">
+    <mat-card *ngFor="let movie of movies" class="movie-card">
+      <img mat-card-image *ngIf="movie.poster_path" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+        alt="{{ movie.title }}" />
+      <mat-card-header>
+        <mat-card-title>{{ movie.title }}</mat-card-title>
+        <mat-card-subtitle>{{ movie.release_date }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>{{ movie.overview }}</mat-card-content>
+
+      <!-- Read More and add to list button -->
+      <mat-card-actions class="movie-card-actions">
+        <button mat-flat-button [color]="isInWatchlist(movie) ? 'warn' : 'primary'" (click)="toggleWatchlist(movie)"
+          class="action-button">
+          <mat-icon>
+            {{ isInWatchlist(movie) ? 'favorite' : 'favorite_border' }}
+          </mat-icon>
+          <span>{{ isInWatchlist(movie) ? 'REMOVE' : 'FAVOURITE' }}</span>
+        </button>
+
+        <a mat-flat-button color="accent" [href]="'https://www.themoviedb.org/movie/' + movie.id" target="_blank"
+          rel="noopener" class="action-button">
+          <span>READ MORE</span>
+        </a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

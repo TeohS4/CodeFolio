@@ -1,0 +1,83 @@
+<div class="top-bar">
+  <button mat-icon-button (click)="toggleSidenav()" class="menu-button">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="brand-name">CodeFolio</span>
+</div>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav [mode]="isMobile() ? 'over' : 'side'" [opened]="!isMobile()" class="sidenav">
+
+    <div class="sidebar-title">
+      <span class="logo-icon">{{ '{' }}{{ '}' }}</span>
+      CodeFolio
+    </div>
+
+    <mat-nav-list (click)="isMobile() ? sidenav.close() : null">
+      <a mat-list-item routerLink="/home" routerLinkActive="active">
+        <mat-icon matListItemIcon>home</mat-icon>
+        <span>Home</span>
+      </a>
+
+      <a mat-list-item routerLink="/weather" routerLinkActive="active">
+        <mat-icon matListItemIcon>cloud_queue</mat-icon>
+        <span>Weather</span>
+      </a>
+
+      <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon matListItemIcon>movie_filter</mat-icon>
+            <span>Movies</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-nav-list class="sub-menu">
+          <a mat-list-item routerLink="/movie" routerLinkActive="active">
+            <mat-icon matListItemIcon>search</mat-icon>
+            <span>Search</span>
+          </a>
+          <a mat-list-item routerLink="/watch-list" routerLinkActive="active">
+            <mat-icon matListItemIcon>format_list_bulleted</mat-icon>
+            <span>Watchlist</span>
+          </a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+
+      <a mat-list-item routerLink="/task" routerLinkActive="active">
+        <mat-icon matListItemIcon>edit_note</mat-icon>
+        <span>To Do List</span>
+      </a>
+
+      <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon matListItemIcon>article</mat-icon>
+            <span>News</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list class="sub-menu">
+          <a mat-list-item routerLink="/news" routerLinkActive="active">
+            <mat-icon matListItemIcon>article</mat-icon>
+            <span>News</span>
+          </a>
+          <a mat-list-item routerLink="/bookmark" routerLinkActive="active">
+            <mat-icon matListItemIcon>bookmark</mat-icon>
+            <span>Bookmark</span>
+          </a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+
+      <a mat-list-item routerLink="/contact-us" routerLinkActive="active">
+        <mat-icon matListItemIcon>phone</mat-icon>
+        <span>Contact Us</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

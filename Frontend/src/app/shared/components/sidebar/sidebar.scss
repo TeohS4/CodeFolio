@@ -1,0 +1,120 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  height: 64px;
+  background-color: #180041;
+  color: white;
+  z-index: 10;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.brand-name {
+  margin-left: 16px;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.sidenav-container {
+  flex: 1;
+  /* Fills remaining height */
+}
+
+/* Sidebar Styling */
+.sidenav {
+  width: 240px;
+  background: #180041;
+  color: #fff;
+  border: none;
+}
+
+.sidebar-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.6rem;
+  font-weight: 700;
+  padding: 24px 0;
+  color: #ffffff;
+  letter-spacing: -1px;
+}
+
+.logo-icon {
+  background-color: #2196F3;
+  color: white;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    0 1px 10px 0 rgba(0, 0, 0, 0.12),
+    0 2px 4px -1px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Nav List & Links */
+mat-nav-list {
+  padding: 0 8px;
+}
+
+.sidenav a {
+  color: rgba(255, 255, 255, 0.8) !important;
+  margin-bottom: 4px;
+  border-radius: 8px;
+  transition: background 0.2s;
+
+  &.active {
+    background: #5b5bff !important;
+    color: #ffffff !important;
+  }
+}
+
+/* Expansion Panels */
+.menu-panel {
+  background: transparent !important;
+  color: #fff !important;
+
+  ::ng-deep .mat-expansion-panel-header-title {
+    color: white !important;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  ::ng-deep .mat-expansion-indicator::after {
+    color: white;
+  }
+}
+
+.sub-menu {
+  padding-left: 16px !important;
+}
+
+.main-content {
+  padding: 20px;
+}
+
+/* Utility: Hide menu button on desktop if sidenav is fixed */
+@media (min-width: 960px) {
+  .menu-button {
+    display: none;
+  }
+
+  .top-bar {
+    display: none;
+    /* Optional: Hide top bar on desktop if sidebar has title */
+  }
+}

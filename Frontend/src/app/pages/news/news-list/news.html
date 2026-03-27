@@ -1,0 +1,60 @@
+<div class="news-container">
+    <div class="news-wrapper">
+        <!-- Search -->
+        <div class="top-section">
+            <div class="top-bar">
+                <mat-form-field appearance="outline" class="search-field">
+                    <mat-label>Search news</mat-label>
+                    <input matInput [(ngModel)]="searchQuery" (keyup.enter)="search()" />
+                </mat-form-field>
+                <button mat-raised-button color="primary" (click)="search()">
+                    Search
+                </button>
+            </div>
+            <!-- Categories -->
+            <div class="categories">
+                <button mat-stroked-button *ngFor="let cat of categories" (click)="selectCategory(cat)"
+                    [ngClass]="{ 'active-category': selectedCategory === cat }">
+                    {{ cat }}
+                </button>
+            </div>
+        </div>
+        <!-- News List -->
+        <div class="news-content">
+            <div class="news-list">
+                <mat-card class="news-card" *ngFor="let news of articles">
+                    <!-- Image -->
+                    <img mat-card-image *ngIf="news.urlToImage" [src]="news.urlToImage" alt="news image"
+                        class="news-image" />
+                    <!-- Content -->
+                    <mat-card-content>
+                        <h3>{{ news.title }}</h3>
+                        <p>{{ news.description }}</p>
+                    </mat-card-content>
+
+                    <mat-card-actions class="news-card-actions">
+                        <button mat-raised-button color="accent" class="action-button" (click)="toggleBookmark(news)">
+                            <mat-icon>
+                                {{ bookmarkedUrls.has(news.url) ? 'bookmark' : 'bookmark_border' }}
+                            </mat-icon>
+                            {{ bookmarkedUrls.has(news.url) ? 'Saved' : 'Save' }}
+                        </button>
+
+                        <a mat-raised-button color="accent" class="action-button" [href]="news.url" target="_blank">
+                            Read More
+                        </a>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+        <!-- Load More -->
+        <div class="load-more-container">
+            <button mat-raised-button color="primary" (click)="loadNews()" [disabled]="loading">
+                Load More
+            </button>
+            <!-- Spinner -->
+            <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="40">
+            </mat-progress-spinner>
+        </div>
+    </div>
+</div>

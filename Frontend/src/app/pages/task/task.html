@@ -1,0 +1,85 @@
+<div class="task-container">
+  <div class="header">
+    <h2>Task List</h2>
+    <button mat-raised-button color="primary" (click)="openDialog()">
+      + New Task
+    </button>
+  </div>
+
+  <!-- TASK LIST -->
+  <div cdkDropList class="task-list" (cdkDropListDropped)="drop($any($event))">
+    <!-- TASK ITEMS -->
+    <div *ngIf="tasks && tasks.length > 0; else emptyState">
+      <div class="task-item" *ngFor="let task of tasks; trackBy: trackById" [class.done]="task.done" cdkDrag>
+        <!-- HEADER -->
+        <div class="task-header">
+          <div class="priority-dot" [ngClass]="task.priority"></div>
+          <mat-checkbox [(ngModel)]="task.done" name="taskDone" (change)="toggleDone(task)"
+            (click)="$event.stopPropagation()"></mat-checkbox>
+
+          <mat-icon cdkDragHandle class="drag-handle">
+            drag_indicator
+          </mat-icon>
+        </div>
+        <!-- BODY -->
+        <div class="task-body" (click)="openDialog(task)">
+          <strong [class.strike]="task.done">
+            {{ task.name }}
+          </strong>
+          <p>
+            {{ task.description }}
+          </p>
+        </div>
+        <!-- DELETE -->
+        <mat-icon class="trash-icon" (click)="deleteTask(task.id)">
+          delete
+        </mat-icon>
+      </div>
+    </div>
+    <ng-template #emptyState>
+      <div class="empty-state">
+        No tasks found. Click "+ New Task"
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<!-- dialog -->
+<ng-template #taskDialog>
+  <div class="mb-2">
+    <h3 mat-dialog-title>
+      {{ selectedTask.id ? 'Edit Task' : 'Create Task' }}
+    </h3>
+  </div>
+
+  <mat-dialog-content>
+    <mat-form-field appearance="outline">
+      <mat-label>Task Name</mat-label>
+      <input matInput [(ngModel)]="selectedTask.name" name="taskName" placeholder="Enter task name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea matInput rows="6" [(ngModel)]="selectedTask.description" name="taskDesc"
+        placeholder="Enter details"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Priority</mat-label>
+      <mat-select [(ngModel)]="selectedTask.priority" name="priority">
+        <mat-option value="red">🔴 High</mat-option>
+        <mat-option value="yellow">🟡 Medium</mat-option>
+        <mat-option value="green">🟢 Low</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="dialogRef.close()">
+      Cancel
+    </button>
+    <button mat-raised-button color="primary" (click)="saveTask()" [disabled]="!selectedTask.name">
+      {{ selectedTask.id ? 'Update' : 'Save' }}
+    </button>
+  </mat-dialog-actions>
+</ng-template>

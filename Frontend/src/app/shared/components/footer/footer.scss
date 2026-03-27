@@ -1,0 +1,26 @@
+.app-footer {
+  background: #212121; 
+  color: #e0e0e0;   
+  padding: 16px 24px;
+  border-top: 1px solid #424242;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 13px;
+  gap: 8px;
+}
+
+.footer-right a {
+  margin-left: 12px;
+  text-decoration: none;
+  color: #90caf9; 
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #42a5f5; 
+  }
+}

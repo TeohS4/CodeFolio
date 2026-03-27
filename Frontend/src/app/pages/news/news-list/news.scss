@@ -1,0 +1,164 @@
+.news-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 1rem;
+  background: #242424;
+  border-radius: 12px;
+}
+
+.news-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.news-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding-bottom: 20px;
+}
+
+.news-card {
+  background: #3a3a3a;
+  color: white;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+/* Fix content spacing so buttons sit at the bottom */
+mat-card-content {
+  flex-grow: 1;
+}
+
+.news-card-actions {
+  display: flex;
+  gap: 12px;
+  padding: 16px !important;
+  margin-top: auto;
+}
+
+.action-button {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  height: 40px; /* Consistent height */
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.news-image {
+  border-radius: 12px 12px 0 0;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+
+/* 🔝 top stays fixed */
+.top-section {
+  position: sticky;
+  top: 0;
+  background: #242424;
+  z-index: 10;
+  padding-bottom: 8px;
+}
+
+/* scroll area */
+.news-content {
+  overflow-y: auto;
+  padding-top: 8px;
+}
+
+/* prevent layout jump */
+.news-list {
+  min-height: 350px; /* slightly taller */
+}
+
+/* Search */
+.top-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.search-field {
+  flex: 1;
+}
+
+/* Categories */
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.categories button {
+  background: #2a2a2a;
+  color: #fff;
+}
+
+.active-category {
+  background: #1976d2 !important;
+  color: white !important;
+  border-color: #1976d2 !important;
+}
+
+/* List */
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Card (grey inside dark mode) */
+.news-card {
+  background: #3a3a3a;
+  color: white;
+  border-radius: 12px;
+  min-height: 280px; /* slightly taller for content */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Rounded image */
+.news-image {
+  border-radius: 12px;
+  object-fit: cover;
+  max-height: 250px; /* slightly taller */
+}
+
+/* Actions (your style preserved) */
+.news-card-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px;
+  margin-top: auto;
+}
+
+.action-button {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  text-transform: uppercase;
+}
+
+/* Load more */
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+}

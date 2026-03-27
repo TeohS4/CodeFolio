@@ -1,0 +1,28 @@
+<div class="movie-container">
+    <h2>My Watchlist</h2>
+
+    <p *ngIf="watchList.length === 0" class="info-message">Your watchlist is currently empty.</p>
+
+    <div class="movies" *ngIf="watchList.length > 0">
+        <mat-card *ngFor="let movie of watchList" class="movie-card">
+            <img mat-card-image *ngIf="movie.poster_path" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+                alt="{{ movie.title }}" />
+            <mat-card-header>
+                <mat-card-title>{{ movie.title }}</mat-card-title>
+                <mat-card-subtitle>{{ movie.release_date }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>{{ movie.overview }}</mat-card-content>
+
+            <mat-card-actions class="movie-card-actions">
+                <button mat-flat-button color="warn" (click)="removeItem(movie.id)" class="action-button">
+                    <mat-icon>delete</mat-icon>
+                    <span>REMOVE</span>
+                </button>
+                <a mat-flat-button color="accent" [href]="'https://www.themoviedb.org/movie/' + movie.id"
+                    target="_blank" rel="noopener" class="action-button">
+                    <span>READ MORE</span>
+                </a>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

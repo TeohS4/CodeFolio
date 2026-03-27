@@ -1,0 +1,32 @@
+<div class="news-container">
+  <div class="news-wrapper">
+    <h2 class="title-with-icon">
+      <mat-icon>bookmark</mat-icon> My Bookmarks
+    </h2>
+    <div class="news-content">
+      <div class="news-list">
+
+        <mat-card class="news-card" *ngFor="let news of bookmarks; trackBy: trackByFn">
+          <img mat-card-image *ngIf="news.urlToImage" [src]="news.urlToImage" loading="lazy" class="news-image" />
+
+          <mat-card-content>
+            <h3>{{ news.title }}</h3>
+            <p>{{ news.description }}</p>
+          </mat-card-content>
+
+          <mat-card-actions class="news-card-actions">
+            <button mat-raised-button color="warn" class="action-button" (click)="removeBookmark(news)">
+              <mat-icon>delete</mat-icon>
+              Delete
+            </button>
+
+            <a mat-raised-button color="accent" class="action-button" [href]="news.url" target="_blank">
+              Source
+            </a>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+
+  </div>
+</div>

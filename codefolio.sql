@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2026 at 05:04 AM
+-- Generation Time: Mar 29, 2026 at 11:51 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,33 @@ SET time_zone = "+00:00";
 --
 -- Database: `codefolio`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employees`
+--
+
+CREATE TABLE `employees` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `job_title` varchar(100) NOT NULL,
+  `department` varchar(100) NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `join_date` date DEFAULT NULL,
+  `salary` decimal(15,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `employees`
+--
+
+INSERT INTO `employees` (`id`, `name`, `job_title`, `department`, `status`, `join_date`, `salary`) VALUES
+(1, 'Alex Koid', 'Software Engineer', 'IT', 'Active', '2022-02-12', 3100.00),
+(5, 'Kevin Lee', 'Mechanical Engineer', 'Engineering', 'Inactive', '2023-11-13', 5000.00),
+(6, 'Veronica Lee', 'Planner', 'Project Management', 'Active', '2000-12-31', 3000.00),
+(7, 'Teoh Wei Jie', 'Software Engineer', 'IT', 'Active', '2025-09-05', 3500.00),
+(8, 'Goh', 'Sales Executive', 'Sales', 'Inactive', '2024-06-19', 3000.00);
 
 -- --------------------------------------------------------
 
@@ -78,10 +105,18 @@ INSERT INTO `tasks` (`id`, `name`, `description`, `done`, `position`, `priority`
 --
 
 CREATE TABLE `users` (
-  `Id` int(11) NOT NULL,
-  `Name` varchar(100) NOT NULL,
-  `Email` varchar(100) NOT NULL
+  `id` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `created_at`) VALUES
+(1, 'test', '1234', '2026-03-29 08:42:37');
 
 -- --------------------------------------------------------
 
@@ -112,6 +147,12 @@ INSERT INTO `watchlist` (`id`, `title`, `overview`, `poster_path`, `release_date
 --
 
 --
+-- Indexes for table `employees`
+--
+ALTER TABLE `employees`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `news_bookmark`
 --
 ALTER TABLE `news_bookmark`
@@ -127,7 +168,8 @@ ALTER TABLE `tasks`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`Id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indexes for table `watchlist`
@@ -140,6 +182,12 @@ ALTER TABLE `watchlist`
 --
 
 --
+-- AUTO_INCREMENT for table `employees`
+--
+ALTER TABLE `employees`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
@@ -149,7 +197,7 @@ ALTER TABLE `tasks`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

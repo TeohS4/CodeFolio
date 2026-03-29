@@ -107,6 +107,30 @@ mat-nav-list {
   padding: 20px;
 }
 
+.sidebar-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-footer {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-footer button {
+  color: #f44336;
+}
+
+.clock {
+  font-size: 14px;
+}
+
 /* Utility: Hide menu button on desktop if sidenav is fixed */
 @media (min-width: 960px) {
   .menu-button {

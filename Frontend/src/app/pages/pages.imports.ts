@@ -16,8 +16,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { MatOptionModule } from '@angular/material/core';
+import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatMenuModule } from '@angular/material/menu';
 
 export const PAGES_IMPORTS = [
   CommonModule,
@@ -30,7 +34,7 @@ export const PAGES_IMPORTS = [
   MatProgressSpinnerModule,
   MatChipsModule,
   MatIconModule,
-  NoEmojiDirective, 
+  NoEmojiDirective,
   MatDialogModule,
   MatListModule,
   FormsModule,
@@ -38,5 +42,9 @@ export const PAGES_IMPORTS = [
   MatInputModule,
   DragDropModule,
   ReactiveFormsModule,
-  MatSelectModule
+  MatSelectModule,
+  MatTableModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatMenuModule
 ];

@@ -44,11 +44,6 @@
         </mat-nav-list>
       </mat-expansion-panel>
 
-      <a mat-list-item routerLink="/task" routerLinkActive="active">
-        <mat-icon matListItemIcon>edit_note</mat-icon>
-        <span>To Do List</span>
-      </a>
-
       <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -68,10 +63,26 @@
         </mat-nav-list>
       </mat-expansion-panel>
 
+      <a mat-list-item routerLink="/employee" routerLinkActive="active">
+        <mat-icon matListItemIcon>person</mat-icon>
+        <span>Employee</span>
+      </a>
+
+      <a mat-list-item routerLink="/task" routerLinkActive="active">
+        <mat-icon matListItemIcon>edit_note</mat-icon>
+        <span>To Do List</span>
+      </a>
+
       <a mat-list-item routerLink="/contact-us" routerLinkActive="active">
         <mat-icon matListItemIcon>phone</mat-icon>
         <span>Contact Us</span>
       </a>
+
+      <div class="sidebar-footer">
+        <button mat-button color="warn" (click)="logout()">Logout</button>
+        <span class="clock">{{ currentTime }}</span>
+      </div>
+
     </mat-nav-list>
   </mat-sidenav>
 

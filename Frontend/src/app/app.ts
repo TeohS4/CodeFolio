@@ -8,10 +8,7 @@ import { Footer } from './shared/components/footer/footer';
 @Component({
   selector: 'app-root',
   imports: [
-    MatSidenavModule,
-    MatListModule,
-    Sidebar,
-    Footer
+    RouterOutlet
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',

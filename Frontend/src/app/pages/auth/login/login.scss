@@ -1,0 +1,27 @@
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #121212;
+}
+
+.login-card {
+  width: 350px;
+  padding: 20px;
+  border-radius: 16px;
+  background: #1e1e1e;
+  color: white;
+}
+
+.full-width {
+  width: 100%;
+}
+
+mat-form-field {
+  margin-bottom: 15px;
+}
+
+button {
+  border-radius: 12px;
+}

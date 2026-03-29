@@ -1,0 +1,107 @@
+.container {
+  max-width: 950px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #1e1e1e;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.toolbar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+mat-form-field {
+  min-width: 180px;
+  flex: 1;
+}
+
+table {
+  width: 100%;
+  background: #1e1e1e !important;
+  border-spacing: 0;
+}
+
+th {
+  background: #2d2d2d !important;
+  color: #e0e0e0;
+  font-weight: 600;
+  padding: 12px !important;
+  cursor: pointer;
+}
+
+tr.mat-mdc-row {
+  background: #1e1e1e;
+}
+
+/* Zebra striping */
+tr.mat-mdc-row:nth-child(even) {
+  background: #252525;
+}
+
+tr.mat-mdc-row:hover {
+  background-color: #333333 !important;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+td.mat-mdc-cell {
+  border-bottom: 1px solid #333 !important;
+  color: #cccccc;
+}
+
+.active {
+  color: #4caf50;
+  font-weight: 500;
+}
+
+.inactive {
+  color: #ff9800;
+  font-weight: 500;
+}
+
+td button {
+  margin-right: 5px;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+mat-dialog-content input {
+  width: 100%;
+}
+
+.toolbar button {
+  height: 56px;
+}
+
+.action-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.right-group {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.btn {
+  color: #e0e0e0 !important;
+  border-color: #444 !important;
+}
+
+.btn:hover {
+  background: rgb(72, 59, 222) !important;
+}

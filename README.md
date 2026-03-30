@@ -17,5 +17,5 @@ An Angular project with ASP.NET
 - MySQL (via XAMPP)
 
 ## Demo Account
-- test
-- 1234
+- Username: test
+- pass: 1234

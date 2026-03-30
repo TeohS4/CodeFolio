@@ -15,3 +15,7 @@ An Angular project with ASP.NET
 - Angular  
 - ASP.NET  
 - MySQL (via XAMPP)
+
+## Demo Account
+- test
+- 1234

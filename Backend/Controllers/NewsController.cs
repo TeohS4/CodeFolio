@@ -14,7 +14,8 @@ namespace Backend.Controllers
         private readonly string _connectionString;
         public NewsController(IConfiguration config)
         {
-            _connectionString = config.GetConnectionString("CodeFolioDb");
+            _connectionString = config.GetConnectionString("CodeFolioDb") ?? 
+            throw new InvalidOperationException("Connection string 'CodeFolioDb' not found");
         }
 
         private IDbConnection CreateConnection() => new MySqlConnection(_connectionString);

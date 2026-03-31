@@ -12,6 +12,9 @@ import { LoginComponent } from './pages/auth/login/login';
 import { MainLayout } from './main-layout/main-layout';
 import { authGuard } from './core/guards/auth-guard';
 import { Sidebar } from './shared/components/sidebar/sidebar';
+import { ProductComponent } from './pages/erp/product/product';
+import { OrderComponent } from './pages/erp/order/order';
+import { CustomerComponent } from './pages/erp/customer/customer';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -29,7 +32,10 @@ export const routes: Routes = [
       { path: 'contact-us', component: ContactUsComponent },
       { path: 'news', component: NewsComponent },
       { path: 'bookmark', component: BookmarkComponent },
-      { path: 'employee', component: EmployeeComponent }
+      { path: 'employee', component: EmployeeComponent },
+      { path: 'product', component: ProductComponent },
+      { path: 'order', component: OrderComponent },
+      { path: 'customer', component: CustomerComponent },
     ]
   },
 

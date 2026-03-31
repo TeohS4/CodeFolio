@@ -78,11 +78,34 @@
         <span>Contact Us</span>
       </a>
 
+      <!-- ERP system -->
+      <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon matListItemIcon>dashboard_customize</mat-icon>
+            <span>ERP</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list class="sub-menu">
+          <a mat-list-item routerLink="/customer" routerLinkActive="active">
+            <mat-icon matListItemIcon>groups</mat-icon>
+            <span>Customer</span>
+          </a>
+          <a mat-list-item routerLink="/product" routerLinkActive="active">
+            <mat-icon matListItemIcon>inventory_2</mat-icon>
+            <span>Product</span>
+          </a>
+          <a mat-list-item routerLink="/order" routerLinkActive="active">
+            <mat-icon matListItemIcon>shopping_cart</mat-icon>
+            <span>Order</span>
+          </a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+
       <div class="sidebar-footer">
         <button mat-button color="warn" (click)="logout()">Logout</button>
         <span class="clock">{{ currentTime }}</span>
       </div>
-
     </mat-nav-list>
   </mat-sidenav>
 

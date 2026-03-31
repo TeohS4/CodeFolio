@@ -1,8 +1,7 @@
-﻿namespace Backend.Models
+﻿namespace Backend.Models.Auth
 {
-    public class User
+    public class LoginRequest
     {
-        public int Id { get; set; }
         public string Username { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
     }

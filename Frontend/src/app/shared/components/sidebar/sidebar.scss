@@ -114,7 +114,7 @@ mat-nav-list {
 }
 
 .sidebar-footer {
-  position: absolute;
+  position: flex;
   bottom: 10px;
   left: 10px;
   right: 10px;
@@ -130,6 +130,32 @@ mat-nav-list {
 .clock {
   font-size: 14px;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #cbd5e0;
+  border-radius: 100px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a0aec0;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e0 transparent;
+}
+
 
 /* Utility: Hide menu button on desktop if sidenav is fixed */
 @media (min-width: 960px) {

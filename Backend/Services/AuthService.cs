@@ -1,4 +1,4 @@
-﻿using Backend.Models;
+﻿using Backend.Models.Auth;
 using Dapper;
 using MySqlConnector;
 namespace Backend.Services

@@ -1,0 +1,174 @@
+<div class="container" [formGroup]="form">
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <h2>Orders</h2>
+        <mat-form-field appearance="fill">
+            <mat-label>Select Customer</mat-label>
+            <mat-select formControlName="customerId">
+                <mat-option *ngFor="let c of customers" [value]="c.id">
+                    {{ c.name }} ({{ c.email }})
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <!-- Product Selection -->
+    <div class="action-row">
+        <h3>Available Products</h3>
+        <div class="right-group">
+            <mat-form-field appearance="fill">
+                <mat-label>Choose Product</mat-label>
+                <mat-select (selectionChange)="addProduct($event.value)">
+                    <mat-option *ngFor="let p of products" [value]="p">
+                        {{ p.name }} — {{ p.price | currency:'RM ':'symbol' }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <!-- Cart Table -->
+    <table mat-table [dataSource]="cartItems" class="mat-elevation-z8">
+
+        <!-- NAME -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Product </th>
+            <td mat-cell *matCellDef="let i"> {{ i.productName }} </td>
+        </ng-container>
+
+        <!-- PRICE -->
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Price </th>
+            <td mat-cell *matCellDef="let i"> {{ i.price | currency:'RM ':'symbol' }} </td>
+        </ng-container>
+
+        <!-- QUANTITY -->
+        <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef> Quantity </th>
+            <td mat-cell *matCellDef="let i">
+                <input type="number" [formControl]="i.qtyControl" min="1" [max]="getStock(i.productId)"
+                    (input)="validateQty(i)">
+            </td>
+        </ng-container>
+
+        <!-- SUBTOTAL -->
+        <ng-container matColumnDef="subtotal">
+            <th mat-header-cell *matHeaderCellDef> Subtotal </th>
+            <td mat-cell *matCellDef="let i"> {{ i.price * i.quantity | currency:'RM ':'symbol' }} </td>
+        </ng-container>
+
+        <!-- ACTIONS -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let i; let idx = index">
+                <button mat-button color="warn" (click)="removeItem(idx)">Remove</button>
+            </td>
+        </ng-container>
+
+        <!-- Header & Rows -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <!-- Order Summary -->
+    <div class="action-row">
+        <h3>Total: {{ getTotal() | currency:'RM ':'symbol' }}</h3>
+        <div class="right-group">
+            <button *ngIf="cartItems.length > 0" mat-button color="accent" (click)="saveOrder()" class="btn">
+                Save Order
+            </button>
+        </div>
+    </div>
+
+    <!-- Order History -->
+    <div class="toolbar">
+        <h2>Order History</h2>
+    </div>
+
+    <table mat-table [dataSource]="orders" class="mat-elevation-z8">
+
+        <!-- ID -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Order # </th>
+            <td mat-cell *matCellDef="let o"> {{ o.id }} </td>
+        </ng-container>
+
+        <!-- CUSTOMER -->
+        <ng-container matColumnDef="customerId">
+            <th mat-header-cell *matHeaderCellDef> Customer </th>
+            <td mat-cell *matCellDef="let o"> {{ o.customerName }} </td>
+        </ng-container>
+
+        <!-- DATE -->
+        <ng-container matColumnDef="orderDate">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let o"> {{ o.orderDate | date:'short' }} </td>
+        </ng-container>
+
+        <!-- TOTAL -->
+        <ng-container matColumnDef="totalAmount">
+            <th mat-header-cell *matHeaderCellDef> Total </th>
+            <td mat-cell *matCellDef="let o"> {{ o.totalAmount | currency:'RM ':'symbol' }} </td>
+        </ng-container>
+
+        <!-- ACTIONS -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let o">
+                <button mat-button color="accent" (click)="viewOrder(o.id)">View</button>
+                <button mat-button color="warn" (click)="deleteOrder(o.id)">Delete</button>
+            </td>
+        </ng-container>
+
+        <!-- Header & Rows -->
+        <tr mat-header-row *matHeaderRowDef="['id','customerId','orderDate','totalAmount','actions']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['id','customerId','orderDate','totalAmount','actions'];"></tr>
+    </table>
+
+    <!-- Selected Order Details -->
+    <ng-template #orderDialog let-data>
+        <h2 mat-dialog-title>Order #{{ data.order.id }} Details</h2>
+        <mat-dialog-content>
+            <p><strong>Customer:</strong> {{ data.order.customerName }} </p>
+            <p>
+                <strong>Email:</strong>
+                <a href="mailto:{{ data.order.customerEmail }}" style="color: #90caf9; text-decoration: none;">
+                    {{ data.order.customerEmail }}
+                </a>
+            </p>
+            <p><strong>Date:</strong> {{ data.order.orderDate | date:'short' }}</p>
+            <p><strong>Total:</strong> RM {{ data.order.totalAmount | number:'1.0-0' }}</p>
+
+            <table mat-table [dataSource]="data.items" class="mat-elevation-z8">
+                <ng-container matColumnDef="productId">
+                    <th mat-header-cell *matHeaderCellDef> Product </th>
+                    <td mat-cell *matCellDef="let i"> {{ i.productName }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="quantity">
+                    <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                    <td mat-cell *matCellDef="let i"> {{ i.quantity }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="price">
+                    <th mat-header-cell *matHeaderCellDef> Price </th>
+                    <td mat-cell *matCellDef="let i"> RM {{ i.price | number:'1.0-0' }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="subtotal">
+                    <th mat-header-cell *matHeaderCellDef> Subtotal </th>
+                    <td mat-cell *matCellDef="let i"> RM {{ (i.price * i.quantity) | number:'1.0-0' }} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="['productId','quantity','price','subtotal']"></tr>
+                <tr mat-row *matRowDef="let row; columns: ['productId','quantity','price','subtotal'];"></tr>
+            </table>
+        </mat-dialog-content>
+
+        <mat-dialog-actions align="end">
+            <button mat-button (click)="print()">Print</button>
+            <button mat-button mat-dialog-close>Close</button>
+        </mat-dialog-actions>
+    </ng-template>
+</div>

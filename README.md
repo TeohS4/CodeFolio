@@ -9,7 +9,8 @@ An Angular project with ASP.NET
 - Movies & Favourite  
 - News & Bookmark
 - Employees Data
-- Contact Us  
+- Contact Us
+- Mini ERP System
 
 ## Tech Stack
 - Angular  

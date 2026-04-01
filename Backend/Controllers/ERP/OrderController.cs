@@ -11,8 +11,7 @@ namespace Backend.Controllers.ERP
     {
         private readonly string _conn;
 
-        public OrdersController(IConfiguration config)
-            => _conn = config.GetConnectionString("CodeFolioDb")!;
+        public OrdersController(IConfiguration config) => _conn = config.GetConnectionString("CodeFolioDb")!;
 
         [HttpGet]
         public async Task<IActionResult> Get()
@@ -47,7 +46,8 @@ namespace Backend.Controllers.ERP
             o.OrderDate as orderDate,
             o.TotalAmount as totalAmount,
             c.Name as customerName,
-            c.Email as customerEmail
+            c.Email as customerEmail,
+            c.Address as customerAddress
         FROM Orders o
         INNER JOIN Customers c ON o.CustomerId = c.Id
         WHERE o.Id = @Id";

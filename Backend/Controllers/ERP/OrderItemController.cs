@@ -11,8 +11,7 @@ namespace Backend.Controllers.ERP
     {
         private readonly string _conn;
 
-        public OrderItemsController(IConfiguration config)
-            => _conn = config.GetConnectionString("CodeFolioDb")!;
+        public OrderItemsController(IConfiguration config) => _conn = config.GetConnectionString("CodeFolioDb")!;
 
         [HttpGet("byorder/{orderId}")]
         public async Task<IActionResult> GetByOrder(int orderId)

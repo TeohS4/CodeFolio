@@ -1,5 +1,4 @@
 <div class="customer-container">
-
   <!-- HEADER -->
   <div class="header">
     <h2>Customers List</h2>
@@ -7,35 +6,34 @@
       + Add Customer
     </button>
   </div>
-
-  <!-- TABLE -->
+  <!-- Table -->
   <div class="table-wrapper mat-elevation-z8">
     <table mat-table [dataSource]="customers" class="full-table">
-
       <!-- ID -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
         <td mat-cell *matCellDef="let c"> {{ c.id }} </td>
       </ng-container>
-
-      <!-- NAME -->
+      <!-- Name -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
         <td mat-cell *matCellDef="let c"> {{ c.name }} </td>
       </ng-container>
-
-      <!-- EMAIL -->
+      <!-- Email -->
       <ng-container matColumnDef="email">
         <th mat-header-cell *matHeaderCellDef> Email </th>
         <td mat-cell *matCellDef="let c"> {{ c.email }} </td>
       </ng-container>
-
       <!-- PHONE -->
       <ng-container matColumnDef="phone">
         <th mat-header-cell *matHeaderCellDef> Phone </th>
         <td mat-cell *matCellDef="let c"> {{ c.phone }} </td>
       </ng-container>
-
+      <!-- Address -->
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef> Address </th>
+        <td mat-cell *matCellDef="let c" class="mat-column-address"> {{ c.address }} </td>
+      </ng-container>
       <!-- ACTIONS -->
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Actions </th>
@@ -72,6 +70,11 @@
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Phone</mat-label>
       <input matInput formControlName="phone">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Address</mat-label>
+      <input matInput formControlName="address">
     </mat-form-field>
   </mat-dialog-content>
 

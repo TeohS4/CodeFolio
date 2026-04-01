@@ -5,4 +5,5 @@ export interface Order {
   totalAmount: number; 
   customerName?: string;
   customerEmail?: string;
+  customerAddress?: string;
 }

@@ -21,7 +21,7 @@ export class CustomerComponent implements OnInit {
   model: Customer = this.emptyModel();
   form!: FormGroup;
 
-  displayedColumns: string[] = ['id', 'name', 'email', 'phone', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'email', 'phone', 'address', 'actions'];
 
   constructor(
     private service: CustomerService,
@@ -37,6 +37,7 @@ export class CustomerComponent implements OnInit {
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required],
+      address: ['', Validators.required],
     });
   }
 
@@ -46,6 +47,7 @@ export class CustomerComponent implements OnInit {
       name: '',
       email: '',
       phone: '',
+      address: ''
     };
   }
 
@@ -56,9 +58,10 @@ export class CustomerComponent implements OnInit {
           id: c.id ?? (c as any).Id,
           name: c.name ?? (c as any).Name,
           email: c.email ?? (c as any).Email,
-          phone: c.phone ?? (c as any).Phone
+          phone: c.phone ?? (c as any).Phone,
+          address: c.address ?? (c as any).Address,
         }));
-        this.cdr.detectChanges(); 
+        this.cdr.detectChanges();
       },
       error: () => {
         this.alert.error('Error', 'Failed to load customers');

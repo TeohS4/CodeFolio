@@ -1,5 +1,4 @@
 <div class="container">
-
   <!-- Toolbar -->
   <div class="toolbar">
     <h2>Products</h2>
@@ -34,9 +33,19 @@
     </ng-container>
 
     <!-- STOCK -->
-    <ng-container matColumnDef="stockQuantity">
+    <!-- <ng-container matColumnDef="stockQuantity">
       <th mat-header-cell *matHeaderCellDef> Stock </th>
       <td mat-cell *matCellDef="let p"> {{ p.stockQuantity }} </td>
+    </ng-container> -->
+
+    <!-- STOCK Info-->
+    <!-- Keep ONLY this one, delete the other stockQuantity block -->
+    <ng-container matColumnDef="stockQuantity">
+      <th mat-header-cell *matHeaderCellDef> Stock </th>
+      <td mat-cell *matCellDef="let p" [style.color]="(p?.stockQuantity ?? 0) < 5 ? 'red' : 'inherit'">
+        {{ p?.stockQuantity ?? 0 }}
+        <span *ngIf="(p?.stockQuantity ?? 0) < 5" style="font-size: 10px;">(LOW)</span>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="createdAt">

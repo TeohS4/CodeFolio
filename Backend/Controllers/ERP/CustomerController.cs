@@ -28,8 +28,8 @@ namespace Backend.Controllers.ERP
             using var db = new MySqlConnection(_conn);
 
             await db.ExecuteAsync(@"
-        INSERT INTO Customers (Name, Email, Phone)
-        VALUES (@Name, @Email, @Phone)", c);
+            INSERT INTO Customers (Name, Email, Phone, Address)
+            VALUES (@Name, @Email, @Phone, @Address)", c);
 
             return Ok();
         }
@@ -41,13 +41,12 @@ namespace Backend.Controllers.ERP
 
             await db.ExecuteAsync(@"
             UPDATE Customers 
-            SET Name=@Name, Email=@Email, Phone=@Phone
+            SET Name=@Name, Email=@Email, Phone=@Phone, Address=@Address
             WHERE Id=@Id",
-            new { Id = id, Name = c.Name, Email = c.Email, Phone = c.Phone });
+            new { Id = id, Name = c.Name, Email = c.Email, Phone = c.Phone, Address = c.Address });
 
             return Ok();
         }
-
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)

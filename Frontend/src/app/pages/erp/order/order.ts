@@ -59,7 +59,8 @@ export class OrderComponent implements OnInit {
           id: c.id ?? (c as any).Id,
           name: c.name ?? (c as any).Name,
           email: c.email ?? (c as any).Email,
-          phone: c.phone ?? (c as any).Phone
+          phone: c.phone ?? (c as any).Phone,
+          address: c.address ?? (c as any).Address,
         }));
         this.cdr.detectChanges();
       },

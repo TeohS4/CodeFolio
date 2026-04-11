@@ -44,6 +44,25 @@ namespace Backend.Controllers.ERP
             return Ok(order);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            using var db = new MySqlConnection(_conn);
+
+            var data = await db.QueryAsync(@"
+        SELECT 
+            o.Id, 
+            o.OrderId, 
+            o.ProductId, 
+            o.Quantity, 
+            o.Price,
+            p.Name AS ProductName
+        FROM OrderItems o
+        INNER JOIN Products p ON o.ProductId = p.Id");
+
+            return Ok(data);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(OrderItem item)
         {

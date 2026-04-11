@@ -15,6 +15,7 @@ import { Sidebar } from './shared/components/sidebar/sidebar';
 import { ProductComponent } from './pages/erp/product/product';
 import { OrderComponent } from './pages/erp/order/order';
 import { CustomerComponent } from './pages/erp/customer/customer';
+import { Dashboard } from './pages/erp/dashboard/dashboard';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -36,6 +37,7 @@ export const routes: Routes = [
       { path: 'product', component: ProductComponent },
       { path: 'order', component: OrderComponent },
       { path: 'customer', component: CustomerComponent },
+      { path: 'dashboard', component: Dashboard }
     ]
   },
 

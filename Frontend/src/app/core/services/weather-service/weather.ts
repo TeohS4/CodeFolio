@@ -14,6 +14,7 @@ interface GeocodingResult {
 export class WeatherService {
   private apiUrl = `https://api.open-meteo.com/v1/forecast`;
   private geoUrl = `https://geocoding-api.open-meteo.com/v1/search`;
+  private geoapifyKey = '7fd6dc6b15ca46ee9e568ed8c08bb44c';
 
   constructor(private http: HttpClient) { }
 
@@ -85,7 +86,7 @@ export class WeatherService {
     // Standard OpenStreetMap Export URL
     return `https://www.openstreetmap.org/export/embed.html?bbox=${left},${bottom},${right},${top}&layer=mapnik&marker=${lat},${lon}`;
   }
-  
+
   getWeatherTip(code: number, temp: number): string {
     // Rain / Drizzle
     if ((code >= 51 && code <= 67) || (code >= 80 && code <= 82)) {
@@ -123,4 +124,24 @@ export class WeatherService {
     }
     return '🌤️ Have a great day!';
   }
+
+  getNearbyAttractions(lat: number, lon: number): Observable<any[]> {
+  const apiKey = '7fd6dc6b15ca46ee9e568ed8c08bb44c';
+  // Combined categories for better variety
+  const cats = 'tourism.attraction,entertainment.culture,leisure.park,heritage';
+  const url = `https://api.geoapify.com/v2/places?categories=${cats}&filter=circle:${lon},${lat},5000&bias=proximity:${lon},${lat}&limit=15&apiKey=${apiKey}`;
+  
+  return this.http.get<any>(url).pipe(
+    map(res => {
+      return res.features
+        .filter((f: any) => f.properties.name)
+        .map((f: any) => ({
+          name: f.properties.name,
+          address: f.properties.address_line2,
+          // Generate a clickable Google Maps link using lat/lon
+          mapLink: `https://www.google.com/maps/search/?api=1&query=${f.properties.lat},${f.properties.lon}`
+        }));
+    })
+  );
+}
 }

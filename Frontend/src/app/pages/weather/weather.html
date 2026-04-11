@@ -93,6 +93,44 @@
                     </div>
                 </mat-card-content>
             </mat-card>
+            <!-- Attactions -->
+            <mat-card class="mt-4" *ngIf="attractions$ | async as attractions">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon class="me-2">explore</mat-icon>
+      Recommended Places
+    </mat-card-title>
+  </mat-card-header>
+  
+  <mat-card-content class="p-0">
+    <mat-list *ngIf="attractions.length > 0; else noAttractions">
+      <mat-list-item *ngFor="let place of attractions" class="attraction-item">
+        <mat-icon matListItemIcon color="primary">location_on</mat-icon>
+        
+        <div matListItemTitle>
+          <strong>{{ place.name }}</strong>
+        </div>
+        
+        <div matListItemLine class="text-muted small">
+          {{ place.address }}
+        </div>
+
+        <div matListItemMeta>
+          <a [href]="place.mapLink" target="_blank" mat-icon-button title="View on Maps">
+            <mat-icon>open_in_new</mat-icon>
+          </a>
+        </div>
+      </mat-list-item>
+    </mat-list>
+
+    <ng-template #noAttractions>
+      <div class="p-4 text-center text-muted">
+        <mat-icon style="font-size: 40px; height: 40px; width: 40px;">sentiment_dissatisfied</mat-icon>
+        <p>No named attractions found nearby.</p>
+      </div>
+    </ng-template>
+  </mat-card-content>
+</mat-card>
         </mat-card>
     </ng-container>
 

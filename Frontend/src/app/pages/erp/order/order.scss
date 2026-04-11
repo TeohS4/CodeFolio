@@ -7,17 +7,27 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
-.toolbar {
-  display: flex;
-  gap: 12px;
+.toolbar,
+.action-row {
   margin-bottom: 20px;
-  flex-wrap: wrap;
-  align-items: center;
+  padding: 10px 0;
+}
+
+.full-width-field {
+  width: 950px;
+  display: block;
+}
+
+@media (max-width: 949px) {
+  .full-width-field {
+    width: 100% !important;
+    display: block;
+  }
 }
 
 mat-form-field {
-  min-width: 180px;
-  flex: 1;
+  width: 100%;
+  display: block;
 }
 
 table {
@@ -35,9 +45,11 @@ th.mat-mdc-header-cell {
 
 tr.mat-mdc-row {
   background: #1e1e1e;
+
   &:nth-child(even) {
     background: #252525;
   }
+
   &:hover {
     background-color: #333333 !important;
     transition: background-color 0.2s ease;

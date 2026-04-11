@@ -128,4 +128,19 @@
       transform: translateY(-2px);
     }
   }
+
+  .attraction-item {
+  transition: background-color 0.2s;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+}
+
+[matListItemTitle] {
+  font-size: 1rem;
+}
+
+.text-muted {
+  opacity: 0.7;
+}
 }

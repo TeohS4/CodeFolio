@@ -12,7 +12,8 @@ export const authInterceptor = (req: any, next: any) => {
 
   // bypass public api
   const isExternal = req.url.includes('open-meteo.com') ||
-    req.url.includes('openstreetmap.org');
+    req.url.includes('openstreetmap.org') ||
+    req.url.includes('geoapify.com');
 
   if (token && !isExternal) {
     req = req.clone({

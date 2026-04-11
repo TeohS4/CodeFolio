@@ -1,29 +1,44 @@
 <div class="container" [formGroup]="form">
     <!-- Toolbar -->
     <div class="toolbar">
-        <h2>Sales Orders</h2>
-        <mat-form-field appearance="fill">
-            <mat-label>Select Customer</mat-label>
-            <mat-select formControlName="customerId">
-                <mat-option *ngFor="let c of customers" [value]="c.id">
-                    {{ c.name }} ({{ c.email }})
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h2 class="m-0">Sales Orders</h2>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Select Customer</mat-label>
+                    <mat-select formControlName="customerId">
+                        <mat-option *ngFor="let c of customers" [value]="c.id">
+                            {{ c.name }} ({{ c.email }})
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
     </div>
 
     <!-- Product Selection -->
     <div class="action-row">
-        <h3>Available Products</h3>
-        <div class="right-group">
-            <mat-form-field appearance="fill">
-                <mat-label>Choose Product</mat-label>
-                <mat-select (selectionChange)="addProduct($event.value)">
-                    <mat-option *ngFor="let p of products" [value]="p">
-                        {{ p.name }} — {{ p.price | currency:'RM ':'symbol' }}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
+        <div class="row w-100">
+            <div class="col-md-6">
+                <h2 class="m-0">Available Products</h2>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field appearance="fill" class="full-width-field">
+                    <mat-label>Choose Product</mat-label>
+                    <!-- Disabled if no customerId is selected -->
+                    <mat-select (selectionChange)="addProduct($event.value)"
+                        [disabled]="!form.get('customerId')?.value">
+                        <mat-option *ngFor="let p of products" [value]="p">
+                            {{ p.name }} — {{ p.price | currency:'RM ':'symbol' }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-hint *ngIf="!form.get('customerId')?.value">
+                        Select a customer first to enable products
+                    </mat-hint>
+                </mat-form-field>
+            </div>
         </div>
     </div>
 

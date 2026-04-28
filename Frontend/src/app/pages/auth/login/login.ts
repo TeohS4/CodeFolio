@@ -32,7 +32,7 @@ export class LoginComponent {
         this.router.navigate(['/home']);
       },
       error: () => {
-        alert('Wrong Password or Usernam');
+        this.alert.error("Wrong username or password");
       }
     });
   }

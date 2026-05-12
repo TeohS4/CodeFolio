@@ -115,3 +115,14 @@ D:\CodeFolio\Backend\obj\Debug\net10.0\refint\Backend.dll
 D:\CodeFolio\Backend\obj\Debug\net10.0\Backend.pdb
 D:\CodeFolio\Backend\obj\Debug\net10.0\Backend.genruntimeconfig.cache
 D:\CodeFolio\Backend\obj\Debug\net10.0\ref\Backend.dll
+D:\CodeFolio\Backend\bin\Debug\net10.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\CodeFolio\Backend\bin\Debug\net10.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\CodeFolio\Backend\bin\Debug\net10.0\Newtonsoft.Json.dll
+D:\CodeFolio\Backend\bin\Debug\net10.0\Newtonsoft.Json.Bson.dll
+D:\CodeFolio\Backend\bin\Debug\net10.0\UglyToad.PdfPig.Core.dll
+D:\CodeFolio\Backend\bin\Debug\net10.0\UglyToad.PdfPig.DocumentLayoutAnalysis.dll
+D:\CodeFolio\Backend\bin\Debug\net10.0\UglyToad.PdfPig.Fonts.dll
+D:\CodeFolio\Backend\bin\Debug\net10.0\UglyToad.PdfPig.Package.dll
+D:\CodeFolio\Backend\bin\Debug\net10.0\UglyToad.PdfPig.Tokenization.dll
+D:\CodeFolio\Backend\bin\Debug\net10.0\UglyToad.PdfPig.Tokens.dll
+D:\CodeFolio\Backend\bin\Debug\net10.0\UglyToad.PdfPig.dll

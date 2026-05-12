@@ -1,0 +1,68 @@
+<div class="dark-theme-wrapper">
+    <div class="content-container">
+        <mat-card class="main-card">
+            <mat-card-header>
+                <mat-card-title>AI PDF Analyzer</mat-card-title>
+                <mat-card-subtitle>Powered by Llama 3.3 AI</mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content>
+                <div class="upload-section">
+                    <button mat-stroked-button color="accent" (click)="fileInput.click()">
+                        <mat-icon>upload_file</mat-icon> Upload PDF
+                    </button>
+                    <input #fileInput type="file" (change)="onFileSelected($event)" accept=".pdf" hidden>
+                </div>
+
+                @if (fileName()) {
+                <div class="d-flex flex-column justify-content-center align-items-center text-center w-100">
+                    <p class="mb-1">File uploaded:</p>
+                    <strong>{{ fileName() }}</strong>
+                </div>
+                }
+
+                @if (isLoading()) {
+                <mat-progress-bar mode="indeterminate" class="spacer"></mat-progress-bar>
+                }
+
+                @if (analysis()) {
+                <div class="analysis-result">
+                    <h3>Summary</h3>
+                    <markdown [data]="analysis()" animation.enter="slideUpFade" class="markdown-body"></markdown>
+
+                    @if (lastAnswer()) {
+                    <div class="ai-reply" style="margin-top: 20px; padding-top: 20px; border-top: 1px dashed #555;">
+                        <h3 style="color: #69f0ae;">AI Answer:</h3>
+                        <markdown [data]="lastAnswer()" class="markdown-body"></markdown>
+                    </div>
+                    }
+                </div>
+                }
+            </mat-card-content>
+            <br>
+            <!-- suggestion -->
+            @if (analysis()) {
+            <div class="d-inline-flex flex-wrap justify-content-center gap-2">
+                @for (q of suggestions(); track q) {
+                <button mat-stroked-button color="primary" class="rounded-pill custom-suggestion-btn"
+                    (click)="useSuggestion(q)">
+                    <mat-icon class="me-1">lightbulb</mat-icon>
+                    <span class="text-truncate" style="max-width: 250px;">{{ q }}</span>
+                </button>
+                }
+            </div>
+            <!-- ask section -->
+            <mat-card-actions class="chat-actions">
+                <mat-form-field appearance="outline" class="full-width rounded-input">
+                    <mat-label>Ask something about the document...</mat-label>
+                    <input matInput [ngModel]="userQuestion()" (ngModelChange)="userQuestion.set($event)"
+                        (keyup.enter)="askQuestion()">
+                    <button matSuffix mat-icon-button (click)="askQuestion()" [disabled]="isAsking()">
+                        <mat-icon>send</mat-icon>
+                    </button>
+                </mat-form-field>
+            </mat-card-actions>
+            }
+        </mat-card>
+    </div>
+</div>

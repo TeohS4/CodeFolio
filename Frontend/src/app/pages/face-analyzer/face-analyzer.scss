@@ -1,0 +1,80 @@
+.analyzer-container {
+  min-height: 100vh;
+  background-color: #121212;
+  padding: 20px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.analysis-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1100px;
+}
+
+.video-frame-card {
+  background: #0b1220;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+}
+
+.canvas-stack {
+  position: relative;
+  width: 640px;
+  height: 480px;
+  aspect-ratio: 4 / 3;
+}
+
+.canvas-stack video,
+.canvas-stack canvas {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.stats-bar {
+  background: #0f172a;
+  border-radius: 12px;
+  padding: 14px 22px;
+  font-size: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #e5e7eb;
+}
+
+.stat-value {
+  font-weight: bold;
+  color: #fff;
+  margin-right: 12px;
+}
+
+/* Mood Colors */
+.mood.happy { color: #34d399; }  
+.mood.sad { color: #38bdf8; }    
+.mood.angry { color: #f87171; }   
+.mood.surprised { color: #fbbf24; }
+.mood.neutral { color: #94a3b8; }  
+
+@media (max-width: 992px) {
+  .analysis-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+  .canvas-stack {
+    width: 100%;
+    height: auto;
+  }
+  .stats-bar {
+    width: 100%;
+    text-align: center;
+  }
+}

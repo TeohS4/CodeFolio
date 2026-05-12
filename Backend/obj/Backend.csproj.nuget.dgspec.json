@@ -58,6 +58,10 @@
               "target": "Package",
               "version": "[10.0.5, )"
             },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[10.0.7, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[10.0.5, )"
@@ -73,6 +77,10 @@
             "Npgsql": {
               "target": "Package",
               "version": "[10.0.2, )"
+            },
+            "PdfPig": {
+              "target": "Package",
+              "version": "[0.1.14, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -98,7 +106,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.203/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

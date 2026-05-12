@@ -1,0 +1,22 @@
+<button mat-button (click)="generateSummary()">
+
+  @if (!loading) {
+    Generate AI Summary
+  }
+
+  @if (loading) {
+    Generating...
+  }
+
+</button>
+
+@if (summary) {
+  <div class="summary-box">
+     <markdown [data]="summary" class="markdown-content"></markdown>
+  </div>
+}
+
+<div *ngIf="loading" class="loading">
+  <div class="spinner"></div>
+  Generating AI summary...
+</div>

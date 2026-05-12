@@ -1,0 +1,20 @@
+<!-- Floating Button -->
+<div class="ai-fab" (click)="toggle()">
+  💡
+</div>
+
+<!-- Popup Panel -->
+<div class="ai-panel" *ngIf="open">
+
+  <div class="ai-header">
+    <span>AI Assistant</span>
+    <button (click)="toggle()">✖</button>
+  </div>
+
+  <div class="ai-body">
+    <app-ai-summary
+      [project]="project">
+    </app-ai-summary>
+  </div>
+
+</div>

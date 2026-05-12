@@ -1,0 +1,79 @@
+.dark-theme-wrapper {
+  background-color: #121212;
+  min-height: 100vh;
+  padding: 40px 20px;
+  color: #e0e0e0;
+}
+
+.main-card {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: #1e1e1e !important;
+  border-radius: 24px !important;
+  border: 1px solid #333;
+  padding: 20px;
+}
+
+.analysis-result {
+  background-color: #2c2c2c;
+  padding: 20px;
+  border-radius: 16px;
+  margin-top: 20px;
+  line-height: 1.6;
+  color: #cfd8dc;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.spacer {
+  margin: 20px 0;
+}
+
+.upload-section {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.markdown-body {
+  color: #e0e0e0;
+  line-height: 1.6;
+
+  ::ng-deep {
+    ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    strong {
+      color: #69f0ae;
+    }
+  }
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-content {
+  animation: slideUpFade 0.6s ease-out forwards;
+}
+
+mat-card-title {
+  font-weight: bold;
+  font-size: 24px;
+}

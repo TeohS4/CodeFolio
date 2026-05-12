@@ -77,7 +77,6 @@
         <mat-icon matListItemIcon>phone</mat-icon>
         <span>Contact Us</span>
       </a>
-
       <!-- ERP system -->
       <mat-expansion-panel class="menu-panel" [class.mat-elevation-z0]="true">
         <mat-expansion-panel-header>
@@ -105,7 +104,15 @@
           </a>
         </mat-nav-list>
       </mat-expansion-panel>
-
+      <!-- Pdf Analyzer -->
+      <a mat-list-item routerLink="/pdf-analyzer" routerLinkActive="active">
+        <mat-icon matListItemIcon>picture_as_pdf</mat-icon>
+        <span>PDF Analyzer</span>
+      </a>
+      <a mat-list-item routerLink="/face-analyzer" routerLinkActive="active">
+        <mat-icon matListItemIcon>person</mat-icon>
+        <span>Face Analyzer</span>
+      </a>
       <div class="sidebar-footer">
         <button mat-button color="warn" (click)="logout()">Logout</button>
         <span class="clock">{{ currentTime }}</span>

@@ -21,9 +21,9 @@ namespace Backend.Controllers.ERP
             var data = await db.QueryAsync<OrderItem>(
                 @"SELECT o.Id, o.OrderId, o.ProductId, o.Quantity, o.Price,
                  p.Name AS ProductName
-          FROM OrderItems o
-          INNER JOIN Products p ON o.ProductId = p.Id
-          WHERE o.OrderId = @OrderId",
+                  FROM OrderItems o
+                  INNER JOIN Products p ON o.ProductId = p.Id
+                  WHERE o.OrderId = @OrderId",
                 new { OrderId = orderId });
 
             return Ok(data);
@@ -83,7 +83,6 @@ namespace Backend.Controllers.ERP
             {
                 return BadRequest("Insufficient stock");
             }
-
 
             return Ok();
         }

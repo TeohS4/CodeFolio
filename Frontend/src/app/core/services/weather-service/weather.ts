@@ -83,7 +83,7 @@ export class WeatherService {
     const right = lon + offset;
     const top = lat + offset;
 
-    // Standard OpenStreetMap Export URL
+    // For maps review
     return `https://www.openstreetmap.org/export/embed.html?bbox=${left},${bottom},${right},${top}&layer=mapnik&marker=${lat},${lon}`;
   }
 

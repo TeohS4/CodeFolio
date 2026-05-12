@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\CodeFolio\\Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|d:\\codefolio\\backend\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|d:\\codefolio\\backend\\controllers\\contactcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:controllers\\contactcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|d:\\codefolio\\backend\\controllers\\erp\\orderitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:controllers\\erp\\orderitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|d:\\codefolio\\backend\\controllers\\pdfaicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:controllers\\pdfaicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|d:\\codefolio\\backend\\controllers\\erp\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:controllers\\erp\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|d:\\codefolio\\backend\\controllers\\aicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5ADA2BB6-BD8A-FBBA-631C-E748BB1D8E69}|Backend.csproj|solutionrelative:controllers\\aicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,41 +27,39 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "D:\\CodeFolio\\Backend\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
-              "ToolTip": "D:\\CodeFolio\\Backend\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "Controllers\\AuthController.cs",
+              "Title": "ContactController.cs",
+              "DocumentMoniker": "D:\\CodeFolio\\Backend\\Controllers\\ContactController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ContactController.cs",
+              "ToolTip": "D:\\CodeFolio\\Backend\\Controllers\\ContactController.cs",
+              "RelativeToolTip": "Controllers\\ContactController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-27T13:24:40.814Z",
+              "WhenOpened": "2026-05-11T09:10:45.753Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ProductController.cs",
-              "DocumentMoniker": "D:\\CodeFolio\\Backend\\Controllers\\ERP\\ProductController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ERP\\ProductController.cs",
-              "ToolTip": "D:\\CodeFolio\\Backend\\Controllers\\ERP\\ProductController.cs",
-              "RelativeToolTip": "Controllers\\ERP\\ProductController.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAgwAoAAAAFAAAAAAAAAA==",
+              "Title": "AiController.cs",
+              "DocumentMoniker": "D:\\CodeFolio\\Backend\\Controllers\\AiController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AiController.cs",
+              "ToolTip": "D:\\CodeFolio\\Backend\\Controllers\\AiController.cs",
+              "RelativeToolTip": "Controllers\\AiController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwEIAAAB4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-07T13:39:32.849Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-11T07:01:40.283Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "OrderItemController.cs",
-              "DocumentMoniker": "D:\\CodeFolio\\Backend\\Controllers\\ERP\\OrderItemController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ERP\\OrderItemController.cs",
-              "ToolTip": "D:\\CodeFolio\\Backend\\Controllers\\ERP\\OrderItemController.cs",
-              "RelativeToolTip": "Controllers\\ERP\\OrderItemController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAwBAAAAA1AAAAAAAAAA==",
+              "Title": "PdfAiController.cs",
+              "DocumentMoniker": "D:\\CodeFolio\\Backend\\Controllers\\PdfAiController.cs",
+              "RelativeDocumentMoniker": "Controllers\\PdfAiController.cs",
+              "ToolTip": "D:\\CodeFolio\\Backend\\Controllers\\PdfAiController.cs",
+              "RelativeToolTip": "Controllers\\PdfAiController.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAYwDAAAABsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-07T09:59:07.438Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-11T05:31:53.883Z"
             }
           ]
         }

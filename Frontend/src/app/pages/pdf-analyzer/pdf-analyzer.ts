@@ -42,7 +42,7 @@ export class PdfAnalyzerComponent {
   }
 
   generateSuggestions(summary: string) {
-    this.pdfService.ask(summary, "Provide 3 very short(max 7 words each)follow-up questions separated by a pipe symbol |").subscribe((res: any) => {
+    this.pdfService.ask(summary, "Provide 3 short(max 7 words each) follow-up questions separated by a pipe symbol |").subscribe((res: any) => {
       const raw = res?.choices?.[0]?.message?.content || '';
       console.log('Raw Suggestions:', raw);
 
@@ -66,6 +66,8 @@ export class PdfAnalyzerComponent {
       this.fileName.set(file.name);
       this.analysis.set('');
       this.extractedText.set('');
+      this.lastAnswer.set('');
+      this.suggestions.set([]);
       this.isLoading.set(true);
 
       this.pdfService.uploadAndAnalyze(file).subscribe({
@@ -87,13 +89,14 @@ export class PdfAnalyzerComponent {
     }
   }
 
-  askQuestion() {
+askQuestion() {
     const text = this.extractedText();
     const question = this.userQuestion();
     if (!question || !text) return;
 
     this.isAsking.set(true);
     this.userQuestion.set('');
+    this.alertService.show('info', 'Thinking...');
 
     this.pdfService.ask(text, question).subscribe({
       next: (res: any) => {

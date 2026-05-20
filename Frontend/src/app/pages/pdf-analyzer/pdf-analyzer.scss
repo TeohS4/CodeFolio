@@ -37,6 +37,10 @@
   padding: 20px 0;
 }
 
+h3{
+  color: #69f0ae;
+}
+
 .markdown-body {
   color: #e0e0e0;
   line-height: 1.6;
@@ -53,6 +57,16 @@
 
     strong {
       color: #69f0ae;
+    }
+
+    a {
+      color: #80cbc4; 
+      text-decoration: underline;
+      opacity: 0.9;
+
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 }

@@ -57,6 +57,23 @@
   margin-right: 12px;
 }
 
+.object-tag {
+  display: flex;
+  align-items: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding-right: 16px;
+}
+
+.object-tag:last-child {
+  border-right: none;
+}
+
+.stat-label {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 14px;
+  margin-right: 8px;
+}
 /* Mood Colors */
 .mood.happy { color: #34d399; }  
 .mood.sad { color: #38bdf8; }    

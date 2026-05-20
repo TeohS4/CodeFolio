@@ -17,12 +17,20 @@
         <canvas #overlayCanvas></canvas>
       </div>
     </div>
+    <!-- Behavior stat -->
     <div class="stats-bar" *ngIf="isCameraOn && stats" [@fadeIn]>
       Age: <span class="stat-value">{{ stats.age }}</span>
       Gender: <span class="stat-value">{{ stats.gender | titlecase }}</span>
       Mood: <span class="stat-value mood" [ngClass]="stats.mood.toLowerCase()">
         {{ stats.mood | titlecase }}
       </span>
+    </div>
+    <!-- Object stat -->
+    <div class="stats-bar" *ngIf="isCameraOn && detectedObjects.length > 0">
+      <div *ngFor="let obj of detectedObjects" class="object-tag">
+        <span class="stat-label">{{ obj.class }}</span>
+        <span class="stat-value">{{ obj.score }}%</span>
+      </div>
     </div>
   </div>
 </div>

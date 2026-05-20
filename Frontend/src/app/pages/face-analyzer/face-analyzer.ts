@@ -17,7 +17,7 @@ export class FaceAnalyzerComponent implements OnInit, OnDestroy {
   public stats: any = null;
   public isCameraOn = false;
   private animationId: number | null = null;
-
+  public detectedObjects: { class: string; score: number }[] = [];
   constructor(private faceService: FaceDetectionService) { }
 
   async ngOnInit() {
@@ -63,17 +63,24 @@ export class FaceAnalyzerComponent implements OnInit, OnDestroy {
     const video = this.videoPlayer.nativeElement;
     const canvas = this.overlayCanvas.nativeElement;
     const displaySize = { width: 640, height: 480 };
+    const ctx = canvas.getContext('2d');
+
     faceapi.matchDimensions(canvas, displaySize);
 
     const detect = async () => {
       if (!this.isCameraOn) return;
 
-      const detection = await this.faceService.detectFace(video);
+      const [detection, objects] = await Promise.all([
+        this.faceService.detectFace(video),
+        this.faceService.detectObjects(video)
+      ]);
+
+      // clear
+      ctx?.clearRect(0, 0, displaySize.width, displaySize.height);
+
+      // face process
       if (detection) {
         const resized = faceapi.resizeResults(detection, displaySize);
-        const ctx = canvas.getContext('2d');
-        ctx?.clearRect(0, 0, displaySize.width, displaySize.height);
-
         faceapi.draw.drawDetections(canvas, resized);
         faceapi.draw.drawFaceExpressions(canvas, resized);
 
@@ -81,15 +88,29 @@ export class FaceAnalyzerComponent implements OnInit, OnDestroy {
           .reduce((a, b) => (a[1] > b[1] ? a : b));
 
         this.stats = {
-          age: resized.age !== undefined ? Math.round(resized.age) : 'N/A',
-          gender: resized.gender ?? 'unknown',
+          age: Math.round(resized.age),
+          gender: resized.gender,
           mood: emotion[0]
         };
       }
-      // Run again after 300ms instead of every frame
-      if (this.isCameraOn) {
-        setTimeout(detect, 300);
-      }
+
+      // process and draw detection lines
+      this.detectedObjects = objects
+        .filter(o => o.score > 0.6)
+        .map(o => {
+          const [x, y, w, h] = o.bbox;
+          if (ctx) {
+            ctx.strokeStyle = '#00e5ff';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(x, y, w, h);
+            ctx.fillStyle = '#00e5ff';
+            ctx.fillText(`${o.class} ${Math.round(o.score * 100)}%`, x + 5, y + 15);
+          }
+
+          return { class: o.class, score: Math.round(o.score * 100) };
+        });
+
+      if (this.isCameraOn) setTimeout(detect, 100);
     };
     detect();
   }

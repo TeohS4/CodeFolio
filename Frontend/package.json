@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^21.2.0",
     "@angular/router": "^21.2.0",
     "@genkit-ai/googleai": "^1.28.0",
+    "@tensorflow-models/coco-ssd": "^2.2.3",
     "@vladmandic/face-api": "^1.7.15",
     "chart.js": "^4.5.1",
     "genkit": "^1.33.0",

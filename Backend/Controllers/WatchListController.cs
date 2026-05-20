@@ -19,30 +19,32 @@ namespace Backend.Controllers
         }
 
         private IDbConnection CreateConnection() => new MySqlConnection(_connectionString);
-        // Read
         [HttpGet]
         public async Task<IActionResult> GetWatchlist()
         {
             using var db = CreateConnection();
-            const string sql = @"SELECT id, title, overview, 
-                                 poster_path AS PosterPath, 
-                                 release_date AS ReleaseDate 
-                                 FROM watchlist";
+            const string sql = @"SELECT id, title, overview, poster_path, release_date FROM watchlist";
             var movies = await db.QueryAsync<Movie>(sql);
             return Ok(movies);
         }
+
         // Add
         [HttpPost]
         public async Task<IActionResult> AddToWatchlist([FromBody] Movie movie)
         {
             using var db = CreateConnection();
             const string sql = @"INSERT INTO watchlist (id, title, overview, poster_path, release_date) 
-                                 VALUES (@Id, @Title, @Overview, @PosterPath, @ReleaseDate)
-                                 ON DUPLICATE KEY UPDATE title = @Title";
+                         VALUES (@id, @title, @overview, @poster_path, @release_date)
+                         ON DUPLICATE KEY UPDATE 
+                             title = @title,
+                             overview = @overview,
+                             poster_path = @poster_path,
+                             release_date = @release_date";
 
             await db.ExecuteAsync(sql, movie);
             return Ok(new { message = "Movie saved to watchlist" });
         }
+
         // Delete
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFromWatchlist(long id)

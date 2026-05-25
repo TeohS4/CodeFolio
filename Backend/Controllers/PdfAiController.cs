@@ -32,13 +32,13 @@ namespace Backend.Controllers
                 var client = _httpClientFactory.CreateClient();
                 client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
 
-                // 1. Render PDF pages as base64 images
+                // render PDF pages as base64 images
                 var base64Images = await RenderPdfPagesToBase64(file);
 
                 if (!base64Images.Any())
                     return BadRequest("Could not render PDF pages.");
 
-                // 2. Build vision message — max 5 images per Groq limit
+                // build vision message — max 5 images for Groq limit
                 var imageContents = base64Images.Take(5).Select(b64 => (object)new
                 {
                     type = "image_url",
@@ -51,7 +51,7 @@ namespace Backend.Controllers
                     text = "Extract all the text from these PDF page images exactly as they appear, preserving structure."
                 });
 
-                // 3. extract text using llama vision
+                // extract text using llama vision model
                 var extractPayload = new
                 {
                     model = "meta-llama/llama-4-scout-17b-16e-instruct",
@@ -66,7 +66,7 @@ namespace Backend.Controllers
                 var extractData = JObject.Parse(extractJson);
                 var extractedText = extractData["choices"]?[0]?["message"]?["content"]?.ToString() ?? "";
 
-                // 4. summarize the extracted text using regular model
+                // summarize the extracted text using regular model
                 var summaryPayload = new
                 {
                     model = "llama-3.3-70b-versatile",

@@ -15,9 +15,21 @@
                 </div>
 
                 @if (fileName()) {
-                <div class="d-flex flex-column justify-content-center align-items-center text-center w-100">
-                    <p class="mb-1">File uploaded:</p>
-                    <strong>{{ fileName() }}</strong>
+                <div class="file-preview-card" [class.expanded]="isPreviewOpen()" (click)="togglePreview()">
+                    <div class="file-row">
+                        <mat-icon class="pdf-icon">picture_as_pdf</mat-icon>
+                        <div class="file-text">
+                            <span class="label">File uploaded</span>
+                            <strong class="filename">{{ fileName() }}</strong>
+                        </div>
+                        <mat-icon class="toggle-icon">{{ isPreviewOpen() ? 'expand_less' : 'expand_more' }}</mat-icon>
+                    </div>
+
+                    @if (isPreviewOpen() && pdfPreviewUrl()) {
+                    <div class="pdf-frame-wrapper" (click)="$event.stopPropagation()">
+                        <iframe [src]="pdfPreviewUrl()" width="100%" height="500" frameborder="0"></iframe>
+                    </div>
+                    }
                 </div>
                 }
 

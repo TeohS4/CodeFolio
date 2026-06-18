@@ -1,9 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { PdfService } from '../../core/services/pdf/pdf';
 import { PAGES_IMPORTS } from '../pages.imports';
 import { AlertService } from '../../core/services/alert-service/alert';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MarkdownModule } from 'ngx-markdown';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pdf-analyzer',
@@ -21,6 +22,11 @@ export class PdfAnalyzerComponent {
   extractedText = signal<string>('');
   fileName = signal<string>('');
   suggestions = signal<string[]>([]);
+  pdfPreviewUrl = signal<SafeResourceUrl | null>(null);
+  isPreviewOpen = signal<boolean>(false);
+
+  private rawBlobUrl: string | null = null;
+  private sanitizer = inject(DomSanitizer);
 
   constructor(
     private pdfService: PdfService,
@@ -44,8 +50,6 @@ export class PdfAnalyzerComponent {
   generateSuggestions(summary: string) {
     this.pdfService.ask(summary, "Provide 3 short(max 7 words each) follow-up questions separated by a pipe symbol |").subscribe((res: any) => {
       const raw = res?.choices?.[0]?.message?.content || '';
-      console.log('Raw Suggestions:', raw);
-
       const parts = raw.split('|')
         .map((q: string) => q.trim().replace(/^\d+\.\s*/, ''))
         .filter((q: string) => q.length > 0);
@@ -57,18 +61,26 @@ export class PdfAnalyzerComponent {
   useSuggestion(q: string) {
     this.userQuestion.set(q);
     this.askQuestion();
-    this.suggestions.set([]); // Hide after use
+    this.suggestions.set([]);
   }
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
+      if (this.rawBlobUrl) {
+        URL.revokeObjectURL(this.rawBlobUrl);
+      }
+
       this.fileName.set(file.name);
       this.analysis.set('');
       this.extractedText.set('');
       this.lastAnswer.set('');
       this.suggestions.set([]);
       this.isLoading.set(true);
+      this.isPreviewOpen.set(false);
+
+      this.rawBlobUrl = URL.createObjectURL(file);
+      this.pdfPreviewUrl.set(this.sanitizer.bypassSecurityTrustResourceUrl(this.rawBlobUrl));
 
       this.pdfService.uploadAndAnalyze(file).subscribe({
         next: (res: any) => {
@@ -89,7 +101,11 @@ export class PdfAnalyzerComponent {
     }
   }
 
-askQuestion() {
+  togglePreview() {
+    this.isPreviewOpen.update(v => !v);
+  }
+
+  askQuestion() {
     const text = this.extractedText();
     const question = this.userQuestion();
     if (!question || !text) return;
@@ -113,5 +129,4 @@ askQuestion() {
       }
     });
   }
-
 }

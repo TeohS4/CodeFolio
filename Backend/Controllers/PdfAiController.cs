@@ -54,7 +54,8 @@ namespace Backend.Controllers
                 // extract text using llama vision model
                 var extractPayload = new
                 {
-                    model = "meta-llama/llama-4-scout-17b-16e-instruct",
+                    //model = "meta-llama/llama-4-scout-17b-16e-instruct",
+                    model = "qwen/qwen3.6-27b",
                     messages = new[]
                     {
                 new { role = "user", content = imageContents }

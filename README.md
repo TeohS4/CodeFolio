@@ -11,7 +11,9 @@ An Angular project with ASP.NET
 - Employees Data
 - Contact Us
 - Mini ERP System
-
+- AI PDF Analyzer
+- Face Analyzer with AI(TensorFlow)
+- Document AI Text Scanner
 ## Tech Stack
 - Angular  
 - ASP.NET  

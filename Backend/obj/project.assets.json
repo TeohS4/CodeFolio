@@ -351,7 +351,7 @@
           }
         }
       },
-      "Microsoft.Win32.SystemEvents/10.0.8": {
+      "Microsoft.Win32.SystemEvents/10.0.9": {
         "type": "package",
         "compile": {
           "lib/net10.0/Microsoft.Win32.SystemEvents.dll": {
@@ -458,15 +458,73 @@
           }
         }
       },
-      "Npgsql/10.0.2": {
+      "OpenCvSharp4/4.13.0.20260627": {
         "type": "package",
         "compile": {
-          "lib/net10.0/Npgsql.dll": {
+          "lib/net8.0/OpenCvSharp.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net10.0/Npgsql.dll": {
+          "lib/net8.0/OpenCvSharp.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "OpenCvSharp4.Extensions/4.13.0.20260627": {
+        "type": "package",
+        "dependencies": {
+          "OpenCvSharp4": "4.13.0.20260627",
+          "System.Drawing.Common": "10.0.9"
+        },
+        "compile": {
+          "lib/net8.0/OpenCvSharp.Extensions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/OpenCvSharp.Extensions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "OpenCvSharp4.runtime.win/4.13.0.20260627": {
+        "type": "package",
+        "build": {
+          "build/net8.0/_._": {}
+        },
+        "runtimeTargets": {
+          "runtimes/win-x64/native/OpenCvSharpExtern.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x64/native/opencv_videoio_ffmpeg4130_64.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          }
+        }
+      },
+      "OpenCvSharp4.Windows/4.13.0.20260627": {
+        "type": "package",
+        "dependencies": {
+          "OpenCvSharp4": "4.13.0.20260627",
+          "OpenCvSharp4.WpfExtensions": "4.13.0.20260627",
+          "OpenCvSharp4.runtime.win": "4.13.0.20260627"
+        }
+      },
+      "OpenCvSharp4.WpfExtensions/4.13.0.20260627": {
+        "type": "package",
+        "dependencies": {
+          "OpenCvSharp4": "4.13.0.20260627",
+          "System.Drawing.Common": "10.0.9"
+        },
+        "compile": {
+          "lib/net48/OpenCvSharp.WpfExtensions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net48/OpenCvSharp.WpfExtensions.dll": {
             "related": ".xml"
           }
         }
@@ -605,10 +663,10 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
-      "System.Drawing.Common/10.0.8": {
+      "System.Drawing.Common/10.0.9": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Win32.SystemEvents": "10.0.8"
+          "Microsoft.Win32.SystemEvents": "10.0.9"
         },
         "compile": {
           "lib/net10.0/System.Drawing.Common.dll": {
@@ -1361,10 +1419,10 @@
         "microsoft.openapi.nuspec"
       ]
     },
-    "Microsoft.Win32.SystemEvents/10.0.8": {
-      "sha512": "J9+VT0lkrA7wW38CGxO2sZd+iH9C0qzioMi/2ztpT32WOVr+04uNqFIrxisTRf+mvtXLtdqcio1AoS0vfAVLLQ==",
+    "Microsoft.Win32.SystemEvents/10.0.9": {
+      "sha512": "dk5HKolAR9bBxlL4dl6Koaf0s/Q47QApog+/o341LSuvWGW6ig4q5fTsgYG0MrK//l2Slv6mygncMK/8lgXVDg==",
       "type": "package",
-      "path": "microsoft.win32.systemevents/10.0.8",
+      "path": "microsoft.win32.systemevents/10.0.9",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1385,7 +1443,7 @@
         "lib/net9.0/Microsoft.Win32.SystemEvents.xml",
         "lib/netstandard2.0/Microsoft.Win32.SystemEvents.dll",
         "lib/netstandard2.0/Microsoft.Win32.SystemEvents.xml",
-        "microsoft.win32.systemevents.10.0.8.nupkg.sha512",
+        "microsoft.win32.systemevents.10.0.9.nupkg.sha512",
         "microsoft.win32.systemevents.nuspec",
         "runtimes/win/lib/net10.0/Microsoft.Win32.SystemEvents.dll",
         "runtimes/win/lib/net10.0/Microsoft.Win32.SystemEvents.xml",
@@ -1512,23 +1570,94 @@
         "newtonsoft.json.bson.nuspec"
       ]
     },
-    "Npgsql/10.0.2": {
-      "sha512": "q5RfBI+wywJSFUNDE1L4ZbHEHCFTblo8Uf6A6oe4feOUFYiUQXyAf9GBh5qEZpvJaHiEbpBPkQumjEhXCJxdrg==",
+    "OpenCvSharp4/4.13.0.20260627": {
+      "sha512": "nYk95jkyYY9f0sF5KqZ3OB1SWkmqsfV7eN0ROiQds/rxpSn0v1G0QIedMbwuqbdPhvQnOIG2DDmpkLnHEJMh8Q==",
       "type": "package",
-      "path": "npgsql/10.0.2",
+      "path": "opencvsharp4/4.13.0.20260627",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "README.md",
-        "lib/net10.0/Npgsql.dll",
-        "lib/net10.0/Npgsql.xml",
-        "lib/net8.0/Npgsql.dll",
-        "lib/net8.0/Npgsql.xml",
-        "lib/net9.0/Npgsql.dll",
-        "lib/net9.0/Npgsql.xml",
-        "npgsql.10.0.2.nupkg.sha512",
-        "npgsql.nuspec",
-        "postgresql.png"
+        "README.managed.md",
+        "analyzers/dotnet/cs/OpenCvSharp.Analyzers.dll",
+        "lib/net8.0/OpenCvSharp.dll",
+        "lib/net8.0/OpenCvSharp.xml",
+        "lib/netstandard2.0/OpenCvSharp.dll",
+        "lib/netstandard2.0/OpenCvSharp.xml",
+        "lib/netstandard2.1/OpenCvSharp.dll",
+        "lib/netstandard2.1/OpenCvSharp.xml",
+        "opencvsharp.png",
+        "opencvsharp4.4.13.0.20260627.nupkg.sha512",
+        "opencvsharp4.nuspec"
+      ]
+    },
+    "OpenCvSharp4.Extensions/4.13.0.20260627": {
+      "sha512": "X3dZv/bewNFAGneNYZHMMDEkf6M0HKQBrXIkQYs8nrKrWqJhOSZnyn4bW76CrzCVIDIjAKD27AaaKuQYmzkPOA==",
+      "type": "package",
+      "path": "opencvsharp4.extensions/4.13.0.20260627",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.managed.md",
+        "lib/net8.0/OpenCvSharp.Extensions.dll",
+        "lib/net8.0/OpenCvSharp.Extensions.xml",
+        "lib/netstandard2.0/OpenCvSharp.Extensions.dll",
+        "lib/netstandard2.0/OpenCvSharp.Extensions.xml",
+        "lib/netstandard2.1/OpenCvSharp.Extensions.dll",
+        "lib/netstandard2.1/OpenCvSharp.Extensions.xml",
+        "opencvsharp.png",
+        "opencvsharp4.extensions.4.13.0.20260627.nupkg.sha512",
+        "opencvsharp4.extensions.nuspec"
+      ]
+    },
+    "OpenCvSharp4.runtime.win/4.13.0.20260627": {
+      "sha512": "POIxR+CTpwHJIdam6wd8U2fprWv5QnIUw50jw79WEGb37He3T1h11SdtwSj9p2PLSfrzonMjO2t71wqi5uFsoQ==",
+      "type": "package",
+      "path": "opencvsharp4.runtime.win/4.13.0.20260627",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.runtime.md",
+        "build/net8.0/OpenCvSharp4.runtime.win.props",
+        "build/net8.0/OpenCvSharp4.runtime.win.targets",
+        "build/netcoreapp/OpenCvSharp4.runtime.win.props",
+        "build/netcoreapp/OpenCvSharp4.runtime.win.targets",
+        "build/netstandard/OpenCvSharp4.runtime.win.props",
+        "build/netstandard/OpenCvSharp4.runtime.win.targets",
+        "opencvsharp.png",
+        "opencvsharp4.runtime.win.4.13.0.20260627.nupkg.sha512",
+        "opencvsharp4.runtime.win.nuspec",
+        "runtimes/win-x64/native/OpenCvSharpExtern.dll",
+        "runtimes/win-x64/native/opencv_videoio_ffmpeg4130_64.dll"
+      ]
+    },
+    "OpenCvSharp4.Windows/4.13.0.20260627": {
+      "sha512": "YYJAej4HZYPmN+fG2MCUFDZ/hxsb66PJxAxKuVLFolysGl6opszhILRT2NO/ZEagnlqZ3mlUYGiOjCN0Jj276A==",
+      "type": "package",
+      "path": "opencvsharp4.windows/4.13.0.20260627",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.managed.md",
+        "opencvsharp.png",
+        "opencvsharp4.windows.4.13.0.20260627.nupkg.sha512",
+        "opencvsharp4.windows.nuspec"
+      ]
+    },
+    "OpenCvSharp4.WpfExtensions/4.13.0.20260627": {
+      "sha512": "6cxOJWTuwUGFPgeyrjCQGVtulK25ej1G6f+wW5fVUrgPSNKlUCOOpPAkgq1kHFJ22mNJAlIR8OrKpafBtS8kCA==",
+      "type": "package",
+      "path": "opencvsharp4.wpfextensions/4.13.0.20260627",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.managed.md",
+        "lib/net48/OpenCvSharp.WpfExtensions.dll",
+        "lib/net48/OpenCvSharp.WpfExtensions.xml",
+        "lib/net8.0-windows7.0/OpenCvSharp.WpfExtensions.dll",
+        "lib/net8.0-windows7.0/OpenCvSharp.WpfExtensions.xml",
+        "opencvsharp.png",
+        "opencvsharp4.wpfextensions.4.13.0.20260627.nupkg.sha512",
+        "opencvsharp4.wpfextensions.nuspec"
       ]
     },
     "PdfPig/0.1.14": {
@@ -1756,10 +1885,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Drawing.Common/10.0.8": {
-      "sha512": "LCISd6JAF80vsy9L6wuetZeOMR3FH+SwKovw5Zl0Nov9pB9ZOiCSqvOfMzooypPItQLv0mGfEePjJ1nCCQztNw==",
+    "System.Drawing.Common/10.0.9": {
+      "sha512": "ShkEj8jOhklJgrN3SoaVbCcopvqyIgVXHso2/eibQBL7IZxzJjND77UYVlViHqpwPxyQeA67IOut4b41clBkQw==",
       "type": "package",
-      "path": "system.drawing.common/10.0.8",
+      "path": "system.drawing.common/10.0.9",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1804,7 +1933,7 @@
         "lib/xamarinmac20/_._",
         "lib/xamarintvos10/_._",
         "lib/xamarinwatchos10/_._",
-        "system.drawing.common.10.0.8.nupkg.sha512",
+        "system.drawing.common.10.0.9.nupkg.sha512",
         "system.drawing.common.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -1954,10 +2083,11 @@
       "Microsoft.AspNetCore.OpenApi >= 10.0.5",
       "MySql.Data >= 9.6.0",
       "MySqlConnector >= 2.5.0",
-      "Npgsql >= 10.0.2",
+      "OpenCvSharp4.Extensions >= 4.13.0.20260627",
+      "OpenCvSharp4.Windows >= 4.13.0.20260627",
       "PdfPig >= 0.1.14",
       "Swashbuckle.AspNetCore >= 10.1.6",
-      "System.Drawing.Common >= 10.0.8"
+      "System.Drawing.Common >= 10.0.9"
     ]
   },
   "packageFolders": {
@@ -2040,9 +2170,13 @@
             "target": "Package",
             "version": "[2.5.0, )"
           },
-          "Npgsql": {
+          "OpenCvSharp4.Extensions": {
             "target": "Package",
-            "version": "[10.0.2, )"
+            "version": "[4.13.0.20260627, )"
+          },
+          "OpenCvSharp4.Windows": {
+            "target": "Package",
+            "version": "[4.13.0.20260627, )"
           },
           "PdfPig": {
             "target": "Package",
@@ -2054,7 +2188,7 @@
           },
           "System.Drawing.Common": {
             "target": "Package",
-            "version": "[10.0.8, )"
+            "version": "[10.0.9, )"
           }
         },
         "imports": [
@@ -2493,5 +2627,27 @@
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.OpenApi' 2.4.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-v5pm-xwqc-g5wc",
+      "libraryId": "Microsoft.OpenApi",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'OpenCvSharp4.WpfExtensions 4.13.0.20260627' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net10.0'. This package may not be fully compatible with your project.",
+      "libraryId": "OpenCvSharp4.WpfExtensions",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
 }

@@ -18,6 +18,7 @@ import { CustomerComponent } from './pages/erp/customer/customer';
 import { Dashboard } from './pages/erp/dashboard/dashboard';
 import { PdfAnalyzerComponent } from './pages/pdf-analyzer/pdf-analyzer';
 import { FaceAnalyzerComponent } from './pages/face-analyzer/face-analyzer';
+import { DocScannerComponent } from './pages/doc-scanner/doc-scanner';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -40,7 +41,9 @@ export const routes: Routes = [
       { path: 'customer', component: CustomerComponent },
       { path: 'dashboard', component: Dashboard },
       { path: 'pdf-analyzer', component: PdfAnalyzerComponent },
-      { path: 'face-analyzer', component: FaceAnalyzerComponent}
+      { path: 'face-analyzer', component: FaceAnalyzerComponent },
+      { path: 'doc-scanner', component: DocScannerComponent }
+
     ]
   },
 

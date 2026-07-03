@@ -1,0 +1,59 @@
+<div class="scanner-container">
+    <div class="mb-4 text-center">
+        <h2 class="fw-bold text-white mb-1">AI Document Scanner</h2>
+        <p class="text-secondary small">Real-time perspective correction and text intelligence pipeline</p>
+
+        <div class="d-flex justify-content-center w-100 gap-3 btn-container">
+            <button [disabled]="isLoading()" (click)="toggleCamera()" class="mt-2 px-4 rounded-pill btn-toggle"
+                [class.btn-warn]="isCameraOn" [class.btn-primary]="!isCameraOn">
+                {{ isCameraOn ? 'Turn Off Camera' : 'Start Document Scanner' }}
+            </button>
+
+            <button *ngIf="isCameraOn" (click)="captureAndProcess()" class="mt-2 px-4 rounded-pill btn-capture">
+                Capture & Process
+            </button>
+        </div>
+    </div>
+
+    <div *ngIf="errorMessage()" class="error-banner">
+        {{ errorMessage() }}
+    </div>
+
+    <div class="analysis-layout">
+        <div class="video-frame-card" [class.d-none]="!isCameraOn">
+            <div class="canvas-stack">
+                <video #videoPlayer autoplay muted playsinline></video>
+                <canvas #captureCanvas style="display: none;"></canvas>
+            </div>
+        </div>
+
+        <!-- Spinner Loading Display -->
+        <div class="loader-card" *ngIf="isLoading()">
+            <div class="loading-spinner"></div>
+            <p>Running Remote OpenCV Sharp Transformations...</p>
+        </div>
+
+        <!-- Reporting Dashboard -->
+        <div class="results-grid" *ngIf="processedImage() && !isLoading()">
+            <div class="result-card">
+                <h4>Enhanced Flat Output</h4>
+                <div class="img-wrapper">
+                    <img [src]="processedImage()" alt="OpenCV Output Page" />
+                </div>
+            </div>
+
+            <div class="result-card">
+                <div class="card-header-actions">
+                    <h4>Extracted Document Content</h4>
+                    <button class="btn-copy" (click)="copyToClipboard()">
+                        {{ copySuccess() ? 'Copied! ✓' : 'Copy Text' }}
+                    </button>
+                </div>
+                <!-- formating text -->
+                <div class="markdown-preview-pane">
+                    <markdown [data]="extractedText()"></markdown>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

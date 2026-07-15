@@ -8,7 +8,6 @@ An Angular project with ASP.NET
 - Weather data  
 - Movies & Favourite  
 - News & Bookmark
-- Employees Data
 - Contact Us
 - Mini ERP System
 - AI PDF Analyzer
@@ -17,7 +16,7 @@ An Angular project with ASP.NET
 ## Tech Stack
 - Angular  
 - ASP.NET  
-- MySQL (via XAMPP)
+- MySQL
 
 ## Demo Account
 - Username: test

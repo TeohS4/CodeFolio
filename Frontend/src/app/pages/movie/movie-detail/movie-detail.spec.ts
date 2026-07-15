@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AiFab } from './ai-fab';
+import { MovieDetail } from './movie-detail';
 
-describe('AiFab', () => {
-  let component: AiFab;
-  let fixture: ComponentFixture<AiFab>;
+describe('MovieDetail', () => {
+  let component: MovieDetail;
+  let fixture: ComponentFixture<MovieDetail>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AiFab],
+      imports: [MovieDetail],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AiFab);
+    fixture = TestBed.createComponent(MovieDetail);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

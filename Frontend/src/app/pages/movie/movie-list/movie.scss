@@ -50,4 +50,14 @@
     gap: 4px;
     text-transform: uppercase;
   }
+
+  .movie-image {
+    cursor: pointer;
+    transition: .3s;
+  }
+
+  .movie-image:hover {
+    transform: scale(1.03);
+    opacity: .9;
+  }
 }

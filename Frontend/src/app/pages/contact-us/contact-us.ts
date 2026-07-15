@@ -4,12 +4,11 @@ import { EmailService } from '../../core/services/email-service/email';
 import { ContactMessage } from '../../core/interfaces/contact.interface';
 import { PAGES_IMPORTS } from '../pages.imports';
 import { AlertService } from '../../core/services/alert-service/alert';
-import { AiFabComponent } from '../../shared/components/ai-fab/ai-fab';
 
 @Component({
   selector: 'app-contact-us',
   standalone: true,
-  imports: [...PAGES_IMPORTS, AiFabComponent],
+  imports: [...PAGES_IMPORTS],
   templateUrl: './contact-us.html',
   styleUrls: ['./contact-us.scss']
 })
@@ -29,19 +28,6 @@ export class ContactUsComponent {
       message: ['', Validators.required]
     });
   }
-
-  project = {
-    title: 'Contact Form',
-    stack: [
-      'Angular',
-      'ASP.NET Server',
-      'Reactive Forms'
-    ],
-    features: [
-      'Angular Input Validation',
-      'Formspree Mail Service Integration',
-    ]
-  };
 
   onSubmit() {
     this.submitted = true;

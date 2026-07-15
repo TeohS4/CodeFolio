@@ -19,6 +19,7 @@ import { Dashboard } from './pages/erp/dashboard/dashboard';
 import { PdfAnalyzerComponent } from './pages/pdf-analyzer/pdf-analyzer';
 import { FaceAnalyzerComponent } from './pages/face-analyzer/face-analyzer';
 import { DocScannerComponent } from './pages/doc-scanner/doc-scanner';
+import { MovieDetail } from './pages/movie/movie-detail/movie-detail';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -30,20 +31,21 @@ export const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'weather', component: WeatherComponent },
       { path: 'movie', component: MovieComponent },
+      { path: 'movie/:id', component: MovieDetail },
       { path: 'task', component: TaskComponent },
       { path: 'watch-list', component: WatchListComponent },
       { path: 'contact-us', component: ContactUsComponent },
       { path: 'news', component: NewsComponent },
       { path: 'bookmark', component: BookmarkComponent },
       { path: 'employee', component: EmployeeComponent },
-      { path: 'product', component: ProductComponent },
+      { path: 'product', component: ProductComponent }, 
       { path: 'order', component: OrderComponent },
       { path: 'customer', component: CustomerComponent },
       { path: 'dashboard', component: Dashboard },
       { path: 'pdf-analyzer', component: PdfAnalyzerComponent },
       { path: 'face-analyzer', component: FaceAnalyzerComponent },
-      { path: 'doc-scanner', component: DocScannerComponent }
-
+      { path: 'doc-scanner', component: DocScannerComponent },
+      
     ]
   },
 

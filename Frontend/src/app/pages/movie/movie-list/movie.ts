@@ -1,20 +1,19 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MovieService } from '../../../core/services/movie-service/movie';
 import { Movie } from '../../../core/interfaces/movie.interface';
 import { PAGES_IMPORTS } from '../../pages.imports';
 import { AlertService } from '../../../core/services/alert-service/alert';
 import { HttpService } from '../../../core/services/http-service/http';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-movie',
   templateUrl: './movie.html',
   standalone: true,
-  imports: [...PAGES_IMPORTS],
+  imports: [...PAGES_IMPORTS, RouterLink],
   styleUrls: ['./movie.scss']
 })
-export class MovieComponent {
-  query = '';
-  movies: Movie[] = [];
+export class MovieComponent implements OnInit {
   loading = false;
   error = '';
   watchlistIds = new Set<number>();
@@ -28,6 +27,24 @@ export class MovieComponent {
 
   ngOnInit() {
     this.loadWatchlist();
+  }
+
+  // Bind local template 'query' variable to service cache
+  get query(): string {
+    return this.movieService.cachedQuery;
+  }
+
+  set query(value: string) {
+    this.movieService.cachedQuery = value;
+  }
+
+  // Bind local template 'movies' variable to service cache
+  get movies(): Movie[] {
+    return this.movieService.cachedMovies;
+  }
+
+  set movies(value: Movie[]) {
+    this.movieService.cachedMovies = value;
   }
 
   // Load current watchlist IDs from backend
@@ -44,15 +61,15 @@ export class MovieComponent {
     if (!this.query.trim()) return;
 
     this.loading = true;
-    this.movies = [];
+    this.movies = []; // Clears the service cache via the setter
     this.error = '';
 
     this.movieService.searchMovies(this.query).subscribe({
       next: (res) => {
-        this.movies = res;
+        this.movies = res; // Updates service cache via the setter
         this.loading = false;
 
-        // 3. Force Angular to update the view
+        // Force Angular to update the view
         this.cdr.detectChanges();
 
         setTimeout(() => {

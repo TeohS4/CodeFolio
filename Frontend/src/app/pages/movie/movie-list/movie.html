@@ -12,9 +12,11 @@
 
   <p *ngIf="error" class="error">{{ error }}</p>
   <div class="movies" *ngIf="movies.length">
+    
     <mat-card *ngFor="let movie of movies" class="movie-card">
       <img mat-card-image *ngIf="movie.poster_path" [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
-        alt="{{ movie.title }}" />
+        [routerLink]="['/movie', movie.id]" class="movie-image" alt="{{ movie.title }}" />
+
       <mat-card-header>
         <mat-card-title>{{ movie.title }}</mat-card-title>
         <mat-card-subtitle>{{ movie.release_date }}</mat-card-subtitle>

@@ -10,27 +10,46 @@
     </div>
   </div>
   <br>
-  <div class="analysis-layout">
-    <div class="video-frame-card" [class.d-none]="!isCameraOn">
-      <div class="canvas-stack">
-        <video #videoPlayer autoplay muted></video>
-        <canvas #overlayCanvas></canvas>
-      </div>
+<div class="analysis-layout">
+  <div class="video-frame-card" [class.d-none]="!isCameraOn">
+    <div class="canvas-stack">
+      <video #videoPlayer autoplay muted></video>
+      <canvas #overlayCanvas></canvas>
     </div>
-    <!-- Behavior stat -->
-    <div class="stats-bar" *ngIf="isCameraOn && stats" [@fadeIn]>
+  </div>
+
+  <!-- Behavior stat -->
+  <div class="stats-bar" *ngIf="isCameraOn" [@fadeIn]>
+    <ng-container *ngIf="stats; else loadingStats">
       Age: <span class="stat-value">{{ stats.age }}</span>
       Gender: <span class="stat-value">{{ stats.gender | titlecase }}</span>
-      Mood: <span class="stat-value mood" [ngClass]="stats.mood.toLowerCase()">
+      Mood:
+      <span class="stat-value mood" [ngClass]="stats.mood.toLowerCase()">
         {{ stats.mood | titlecase }}
       </span>
-    </div>
-    <!-- Object stat -->
-    <div class="stats-bar" *ngIf="isCameraOn && detectedObjects.length > 0">
+    </ng-container>
+
+    <ng-template #loadingStats>
+      Age: <span class="stat-value">Loading...</span>
+      Gender: <span class="stat-value">Loading...</span>
+      Mood: <span class="stat-value">Loading...</span>
+    </ng-template>
+  </div>
+
+  <!-- Object stat -->
+  <div class="stats-bar" *ngIf="isCameraOn">
+    <ng-container *ngIf="detectedObjects.length > 0; else loadingObjects">
       <div *ngFor="let obj of detectedObjects" class="object-tag">
         <span class="stat-label">{{ obj.class }}</span>
         <span class="stat-value">{{ obj.score }}%</span>
       </div>
-    </div>
+    </ng-container>
+
+    <ng-template #loadingObjects>
+      <div class="object-tag">
+        <span class="stat-label">Loading...</span>
+      </div>
+    </ng-template>
   </div>
+</div>
 </div>

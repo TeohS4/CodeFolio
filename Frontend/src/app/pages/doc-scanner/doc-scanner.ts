@@ -23,7 +23,7 @@ export class DocScannerComponent implements OnDestroy {
   public extractedText = signal<string>('');
   public errorMessage = signal<string | null>(null);
   public copySuccess = signal<boolean>(false);
-  
+
   private videoStream: MediaStream | null = null;
 
   async toggleCamera() {
@@ -79,7 +79,7 @@ export class DocScannerComponent implements OnDestroy {
 
   private uploadSnapshot(blob: Blob) {
     this.isLoading.set(true);
-    this.stopCamera(); 
+    this.stopCamera();
 
     this.docScannerService.processDocument(blob).subscribe({
       next: (res) => {
@@ -94,6 +94,60 @@ export class DocScannerComponent implements OnDestroy {
       }
     });
   }
+
+  onFileSelected(event: Event) {
+  const input = event.target as HTMLInputElement;
+
+  if (!input.files?.length) return;
+
+  const file = input.files[0];
+
+  this.resizeImage(file).then(blob => {
+    this.uploadSnapshot(blob);
+  });
+
+  input.value = '';
+}
+
+resizeImage(file: File): Promise<Blob> {
+  return new Promise(resolve => {
+
+    const img = new Image();
+
+    img.onload = () => {
+
+      const canvas = document.createElement('canvas');
+
+      const maxWidth = 1600;
+
+      const scale = Math.min(
+        maxWidth / img.width,
+        1
+      );
+
+      canvas.width = img.width * scale;
+      canvas.height = img.height * scale;
+
+      const ctx = canvas.getContext('2d')!;
+
+      ctx.drawImage(
+        img,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+
+      canvas.toBlob(
+        blob => resolve(blob!),
+        'image/jpeg',
+        0.8
+      );
+    };
+
+    img.src = URL.createObjectURL(file);
+  });
+}
 
   copyToClipboard() {
     navigator.clipboard.writeText(this.extractedText()).then(() => {

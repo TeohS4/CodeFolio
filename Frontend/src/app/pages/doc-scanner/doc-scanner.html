@@ -8,10 +8,13 @@
                 [class.btn-warn]="isCameraOn" [class.btn-primary]="!isCameraOn">
                 {{ isCameraOn ? 'Turn Off Camera' : 'Start Document Scanner' }}
             </button>
-
+            <button [disabled]="isLoading()" class="mt-2 px-4 rounded-pill btn-upload" (click)="fileInput.click()">
+                Upload Image
+            </button>
             <button *ngIf="isCameraOn" (click)="captureAndProcess()" class="mt-2 px-4 rounded-pill btn-capture">
                 Capture & Process
             </button>
+            <input #fileInput type="file" hidden accept="image/*" (change)="onFileSelected($event)">
         </div>
     </div>
 

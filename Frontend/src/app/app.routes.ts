@@ -26,7 +26,7 @@ export const routes: Routes = [
   {
     path: '',
     component: Sidebar,
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'weather', component: WeatherComponent },

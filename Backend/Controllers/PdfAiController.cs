@@ -55,7 +55,7 @@ namespace Backend.Controllers
                 var extractPayload = new
                 {
                     //model = "meta-llama/llama-4-scout-17b-16e-instruct",
-                    model = "qwen/qwen3.6-27b",
+                    model = "qwen/qwen3.8-27b",
                     messages = new[]
                     {
                 new { role = "user", content = imageContents }
@@ -70,7 +70,8 @@ namespace Backend.Controllers
                 // summarize the extracted text using regular model
                 var summaryPayload = new
                 {
-                    model = "llama-3.3-70b-versatile",
+                    //model = "llama-3.3-70b-versatile",
+                    model = "openai/gpt-oss-120b",
                     messages = new[]
                     {
                 new { role = "system", content = "Summarize the document text into concise bullet points. Use fewer points for short documents and more for longer ones, but never exceed 5 bullet points" },
@@ -91,7 +92,7 @@ namespace Backend.Controllers
                 return StatusCode(500, $"Internal error: {ex.Message}");
             }
         }
-
+        // Ask Question
         [HttpPost("ask")]
         public async Task<IActionResult> AskQuestion([FromBody] AskRequest request)
         {
@@ -103,7 +104,7 @@ namespace Backend.Controllers
 
                 var payload = new
                 {
-                    model = "llama-3.3-70b-versatile",
+                    model = "qwen/qwen3.8-27b",
                     messages = new[] {
                         new { role = "system", content = "Answer the question based strictly on the document text provided." },
                         new { role = "user", content = $"Document Context: {request.Text} \n\n Question: {request.Question}" }

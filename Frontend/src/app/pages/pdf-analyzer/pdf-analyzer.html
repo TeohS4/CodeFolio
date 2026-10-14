@@ -1,86 +1,124 @@
 <div class="dark-theme-wrapper">
-    <div class="content-container">
-        <mat-card class="main-card">
-            <mat-card-header>
-                <mat-card-title>AI PDF Analyzer</mat-card-title>
-                <mat-card-subtitle>Powered by Llama and Qwen LLM</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <p>
-                    Transform your PDF files into actionable knowledge using advanced AI.
-                    Upload documents and receive intelligent summaries, key insights,
-                    content explanations, and accurate answers based on your files.
-                </p>
-            </mat-card-content>
-            <mat-card-content>
-                <div class="upload-section">
-                    <button mat-stroked-button color="accent" (click)="fileInput.click()">
-                        <mat-icon>upload_file</mat-icon> Upload PDF
-                    </button>
-                    <input #fileInput type="file" (change)="onFileSelected($event)" accept=".pdf" hidden>
-                </div>
+  <div class="content-container">
+    <mat-card class="main-card">
+      <mat-card-header class="main-header">
+        <div class="header-content">
+          <div class="header-title-group">
+            <mat-card-title>AI PDF Analyzer</mat-card-title>
+            <mat-card-subtitle>Powered by Open AI</mat-card-subtitle>
+          </div>
 
-                @if (fileName()) {
-                <div class="file-preview-card" [class.expanded]="isPreviewOpen()" (click)="togglePreview()">
-                    <div class="file-row">
-                        <mat-icon class="pdf-icon">picture_as_pdf</mat-icon>
-                        <div class="file-text">
-                            <span class="label">File uploaded</span>
-                            <strong class="filename">{{ fileName() }}</strong>
-                        </div>
-                        <mat-icon class="toggle-icon">{{ isPreviewOpen() ? 'expand_less' : 'expand_more' }}</mat-icon>
-                    </div>
+          <div class="feature-badges">
+            <span class="feature-badge feature-badge--summary">
+              <mat-icon>summarize</mat-icon>
+              Summaries
+            </span>
+            <span class="feature-badge feature-badge--qa">
+              <mat-icon>auto_awesome</mat-icon>
+              Smart Q&A
+            </span>
+          </div>
+        </div>
+      </mat-card-header>
 
-                    @if (isPreviewOpen() && pdfPreviewUrl()) {
-                    <div class="pdf-frame-wrapper" (click)="$event.stopPropagation()">
-                        <iframe [src]="pdfPreviewUrl()" width="100%" height="500" frameborder="0"></iframe>
-                    </div>
-                    }
-                </div>
-                }
+      <mat-card-content class="main-content">
+        <div class="intro-card">
+          <p>
+            Transform your PDF files into actionable knowledge using advanced AI.
+            Upload documents and receive intelligent summaries, key insights,
+            content explanations, and accurate answers based on your files.
+          </p>
+        </div>
 
-                @if (isLoading()) {
-                <mat-progress-bar mode="indeterminate" class="spacer"></mat-progress-bar>
-                }
+        <div class="upload-section">
+          <button mat-stroked-button color="accent" (click)="fileInput.click()" class="upload-btn">
+            <mat-icon>upload_file</mat-icon>
+            Upload PDF
+          </button>
 
-                @if (analysis()) {
-                <div class="analysis-result">
-                    <h3>Summary</h3>
-                    <markdown [data]="analysis()" animation.enter="slideUpFade" class="markdown-body"></markdown>
+          <div class="upload-copy">
+            <strong>Drop in a document</strong>
+            <div>Research papers, reports, contracts, and manuals are all supported.</div>
+          </div>
 
-                    @if (lastAnswer()) {
-                    <div class="ai-reply" style="margin-top: 20px; padding-top: 20px; border-top: 1px dashed #555;">
-                        <h3>AI Answer:</h3>
-                        <markdown [data]="lastAnswer()" class="markdown-body"></markdown>
-                    </div>
-                    }
-                </div>
-                }
-            </mat-card-content>
-            <br>
-            <!-- suggestion -->
-            @if (analysis()) {
-            <div class="d-inline-flex flex-wrap justify-content-center gap-2">
-                @for (q of suggestions(); track q) {
-                <button mat-stroked-button color="primary" class="rounded-pill custom-suggestion-btn"
-                    (click)="useSuggestion(q)">
-                    <mat-icon class="me-1">lightbulb</mat-icon>
-                    <span class="text-truncate" style="max-width: 250px;">{{ q }}</span>
-                </button>
-                }
+          <input #fileInput type="file" (change)="onFileSelected($event)" accept=".pdf" hidden>
+        </div>
+
+        @if (fileName()) {
+        <div class="file-preview-card" [class.expanded]="isPreviewOpen()" (click)="togglePreview()">
+          <div class="file-row">
+            <mat-icon class="pdf-icon">picture_as_pdf</mat-icon>
+            <div class="file-text">
+              <span class="label">File uploaded</span>
+              <strong class="filename">{{ fileName() }}</strong>
             </div>
-            <!-- ask section -->
-            <mat-card-actions class="chat-actions">
-                <mat-form-field appearance="outline" class="full-width rounded-input">
-                    <mat-label>Ask something about the document...</mat-label>
-                    <input matInput [ngModel]="userQuestion()" (ngModelChange)="userQuestion.set($event)"
-                        (keyup.enter)="askQuestion()">
-                    <button matSuffix mat-icon-button (click)="askQuestion()" [disabled]="isAsking()">
-                        <mat-icon>send</mat-icon>
-                    </button>
-                </mat-form-field>
-            </mat-card-actions>
-            }
-        </mat-card>
-    </div>
+            <mat-icon class="toggle-icon">{{ isPreviewOpen() ? 'expand_less' : 'expand_more' }}</mat-icon>
+          </div>
+
+          @if (isPreviewOpen() && pdfPreviewUrl()) {
+          <div class="pdf-frame-wrapper" (click)="$event.stopPropagation()">
+            <iframe [src]="pdfPreviewUrl()" width="100%" height="500" frameborder="0"></iframe>
+          </div>
+          }
+        </div>
+        }
+
+        @if (isLoading()) {
+        <div class="loading-state">
+          <div class="loading-label">
+            <mat-icon>auto_awesome</mat-icon>
+            Analyzing your document...
+          </div>
+          <mat-progress-bar mode="indeterminate" class="spacer"></mat-progress-bar>
+        </div>
+        }
+
+        @if (analysis()) {
+        <div class="analysis-result">
+          <div class="analysis-header">
+            <h3>Summary</h3>
+            <span class="analysis-pill">AI-generated</span>
+          </div>
+
+          <markdown [data]="analysis()" animation.enter="slideUpFade" class="markdown-body"></markdown>
+
+          @if (lastAnswer()) {
+          <div class="ai-reply">
+            <div class="ai-reply-header">
+              <mat-icon>psychology</mat-icon>
+              <h3>AI Answer</h3>
+            </div>
+            <markdown [data]="lastAnswer()" class="markdown-body"></markdown>
+          </div>
+          }
+        </div>
+        }
+      </mat-card-content>
+
+      @if (analysis()) {
+      <div class="suggestion-section">
+        <div class="suggestion-list">
+          @for (q of suggestions(); track q) {
+          <button mat-stroked-button color="primary" class="rounded-pill custom-suggestion-btn"
+            (click)="useSuggestion(q)">
+            <mat-icon class="me-1">lightbulb</mat-icon>
+            <span class="suggestion-text">{{ q }}</span>
+          </button>
+          }
+        </div>
+
+        <mat-card-actions class="chat-actions">
+          <mat-form-field appearance="outline" class="full-width rounded-input">
+            <mat-label>Ask something about the document...</mat-label>
+            <input matInput [ngModel]="userQuestion()" (ngModelChange)="userQuestion.set($event)"
+              (keyup.enter)="askQuestion()">
+            <button matSuffix mat-icon-button (click)="askQuestion()" [disabled]="isAsking()">
+              <mat-icon>send</mat-icon>
+            </button>
+          </mat-form-field>
+        </mat-card-actions>
+      </div>
+      }
+    </mat-card>
+  </div>
 </div>
